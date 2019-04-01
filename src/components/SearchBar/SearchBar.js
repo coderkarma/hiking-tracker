@@ -6,44 +6,34 @@ class SearchBar extends Component {
 	};
 
 	handleChange = event => {
+		event.preventDefault();
 		this.setState({
 			value: event.target.value
 		});
 	};
 
 	getLocation = e => {
-		// 1600+Amphitheatre+Parkway,+Mountain+View,+CA
+		// remove white space and add plus for t
 		let address = this.state.value.replace(/\s/g, '+');
-		let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAVaHMTuOSJrUzFISOWTUtJMiSXLh6BuwM`;
+		let url = `http://localhost:3001/trails/geolocation/${address}`;
 		console.log(url);
 		let promise = fetch(url).then(response => response.json());
-		// .then(json => json);
 		return promise;
 	};
 
-	componentDidMount() {}
-
 	handleSubmit = e => {
 		e.preventDefault();
-		this.getLocation()
-			.then(location => {
-				let lat = location.results[0].geometry.location.lat;
-				let lng = location.results[0].geometry.location.lng;
-
-				console.log('handle submit', JSON.stringify(location));
-				let promise = fetch(
-					`https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=10&key=200439239-c0f23da15aa93f591bfc0baf98024eeb`
-				).then(response => response.json());
-				return promise;
-			})
-			.then(allTrails => console.log('you are here', JSON.stringify(allTrails)));
+		this.getLocation().then(location => {
+			console.log('you are here');
+			console.log(location.trails);
+		});
 	};
 	render() {
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" value={this.state.value} onChange={this.handleChange} />
-					<button type="submit"> Search</button>
+					<button type="submit"> Search </button>
 				</form>
 			</div>
 		);

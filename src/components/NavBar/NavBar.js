@@ -31,17 +31,62 @@ function ButtonAppBar(props) {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" color="inherit" className={classes.grow}>
-						News
+						Hiking Tracker!!
 					</Typography>
 					<Button color="inherit">Login</Button>
+					<Button color="inherit">SignUp</Button>
 				</Toolbar>
 			</AppBar>
 		</div>
 	);
 }
+// import React, {
+// 	Component
+// } from 'react'
+
+//  class NavBar extends Component {
+
+// 	state = {
+// 		email: '',
+// 		password: '',
+// 		isLoggedIn: ''
+// 	};
+
+// 	handleInput = (e) => {
+// 		this.setState({
+// 			[e.target.name]: e.target.value
+// 		})
+// 	}
+// 	handleSignUp = e => {
+// 		e.preventDefault();
+// 		axios
+// 			.post('localhost:3001/users/signup', {
+// 				email: this.state.email,
+// 				password: this.state.password
+// 			})
+// 			.then(response => {
+// 				localStorage.token = response.data.signedJwt;
+
+// 				this.setState({
+// 					isLoggedIn: true,
+// 					user: response.data.user
+// 				});
+// 			})
+// 			.catch(err => console.log(err));
+// 	};
+// 	render() {
+// 		return ( <
+// 			div >
+
+// 			<
+// 			/div>
+// 		)
+// 	}
+// }
 
 ButtonAppBar.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(ButtonAppBar);
+// export default NavBar;
