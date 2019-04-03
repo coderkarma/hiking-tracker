@@ -6,14 +6,35 @@ import './App.css';
 import MyRoutes from './config/routes';
 
 class App extends Component {
-	// this.setState({
-				// 	isLoggedIn: true,
-				// 	user: response.data.user
-				// });
+	state = {
+		isLoggedIn: false,
+		user: ''
+	};
+	handleSignUp = user => {
+		if (user) {
+			this.setState({
+				isLoggedIn: true,
+				user: user
+			});
+		}
+	};
+
+	handleLogin = user => {
+		if (user) {
+			this.setState({
+				isLoggedIn: true,
+				user: user
+			});
+		}
+	};
 	render() {
 		return (
 			<div className="App">
-				<NavBar />
+				<NavBar
+					handleSignUp={this.handleSignUp}
+					isLoggedIn={this.state.isLoggedIn}
+					handleLogin={this.handleLogin}
+				/>
 				{MyRoutes}
 				<SearchBar />
 			</div>

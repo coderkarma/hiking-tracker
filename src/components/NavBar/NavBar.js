@@ -4,10 +4,16 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
+// import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
+// import { Link } from 'react-router-dom';
+// import { Route } from 'react-router-dom';
+// import SignUp from '../NavBar/Forms/SignUp';
+// import Login from '../NavBar/Forms/Login';
+// import Model from './Model';
+import ProfileLogout from './ProfileLogout';
+import LoginSignUp from './LoginSignUp';
 const styles = {
 	root: {
 		flexGrow: 1
@@ -23,6 +29,9 @@ const styles = {
 
 function ButtonAppBar(props) {
 	const { classes } = props;
+
+	console.log(props.isLoggedIn);
+	const NavButtons = props.isLoggedIn ? <ProfileLogout /> : <LoginSignUp />;
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">
@@ -33,56 +42,13 @@ function ButtonAppBar(props) {
 					<Typography variant="h6" color="inherit" className={classes.grow}>
 						Hiking Tracker!!
 					</Typography>
-					<Button color="inherit">Login</Button>
-					<Button color="inherit">SignUp</Button>
+					{/* <Model isLoggedIn={props.isLoggedIn} /> */}
+					{NavButtons}
 				</Toolbar>
 			</AppBar>
 		</div>
 	);
 }
-// import React, {
-// 	Component
-// } from 'react'
-
-//  class NavBar extends Component {
-
-// 	state = {
-// 		email: '',
-// 		password: '',
-// 		isLoggedIn: ''
-// 	};
-
-// 	handleInput = (e) => {
-// 		this.setState({
-// 			[e.target.name]: e.target.value
-// 		})
-// 	}
-// 	handleSignUp = e => {
-// 		e.preventDefault();
-// 		axios
-// 			.post('localhost:3001/users/signup', {
-// 				email: this.state.email,
-// 				password: this.state.password
-// 			})
-// 			.then(response => {
-// 				localStorage.token = response.data.signedJwt;
-
-// 				this.setState({
-// 					isLoggedIn: true,
-// 					user: response.data.user
-// 				});
-// 			})
-// 			.catch(err => console.log(err));
-// 	};
-// 	render() {
-// 		return ( <
-// 			div >
-
-// 			<
-// 			/div>
-// 		)
-// 	}
-// }
 
 ButtonAppBar.propTypes = {
 	classes: PropTypes.object.isRequired

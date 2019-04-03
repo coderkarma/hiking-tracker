@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SearchBar extends Component {
 	state = {
@@ -13,28 +14,17 @@ class SearchBar extends Component {
 
 	getLocation = e => {
 		// 1600+Amphitheatre+Parkway,+Mountain+View,+CA
-		let address = this.state.value.replace(/\s/g, '+');
-		
-		console.log(url);
-		let promise = fetch(url).then(response => response.json());
-		// .then(json => json);
-		return promise;
-	};
+		// let address = this.state.value.replace(/\s/g, '+');
 
-	componentDidMount() {}
+		axios.get('http://localhost:3001/trails/geolocation/:city').then(response => response.json());
+		// .then(json => json);
+	};
 
 	handleSubmit = e => {
 		e.preventDefault();
 		this.getLocation()
 			.then(location => {
-				let lat = location.results[0].geometry.location.lat;
-				let lng = location.results[0].geometry.location.lng;
-
-				console.log('handle submit', JSON.stringify(location));
-				let promise = fetch(
-					
-				).then(response => response.json());
-				return promise;
+				location.json();
 			})
 			.then(allTrails => console.log('you are here', JSON.stringify(allTrails)));
 	};
