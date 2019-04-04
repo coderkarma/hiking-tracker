@@ -1,17 +1,32 @@
 import React, { Component } from 'react';
-import { Button, Dialog, DialogActions, DialogTitle, DialogContent, Typography } from '@material-ui/core';
+import { Button, Dialog, DialogActions, DialogTitle, DialogContent, TextField } from '@material-ui/core';
 
 function LoginForm(props) {
 	return (
 		<div>
-			<p> login</p>
+			<form>
+				<TextField>
+					<input type="email" name="email" placeholder="email" />
+				</TextField>
+				<input type="password" name="password" placeholder="password" />
+
+				<button onClick={props.handleSubmit}>Login </button>
+				{/* <Redirect to="/profile" /> */}
+			</form>
 		</div>
 	);
 }
 function SignUpForm(props) {
 	return (
 		<div>
-			<p>sign up</p>
+			{/* <p>sign up</p> */}
+			<form>
+				<input type="email" name="email" placeholder="email" />
+				<input type="password" name="password" placeholder="password" />
+
+				<button onClick={props.handleSubmit}>Submit </button>
+				{/* <Redirect to="/profile" /> */}
+			</form>
 		</div>
 	);
 }
@@ -21,10 +36,9 @@ class LoginSignUp extends Component {
 		super(props);
 		this.state = {
 			type: null,
-            open: false,
-            username:null,
-            password:null,
-            
+			open: false,
+			username: null,
+			password: null
 		};
 	}
 

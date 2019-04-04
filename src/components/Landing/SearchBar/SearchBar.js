@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Grid, Card, CardMedia } from '@material-ui/core';
 
 class SearchBar extends Component {
 	state = {
-		value: ''
+		value: '',
+		location: ''
 	};
 
 	handleChange = event => {
@@ -24,17 +26,32 @@ class SearchBar extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.getLocation().then(location => {
-			console.log('you are here');
-			console.log(location.trails);
+			this.setState({
+				location: location.trails
+			});
+			console.log('you are here:', this.state.location[0].imgMedium);
 		});
 	};
 	render() {
+		let images = this.state.location
+			? this.state.location.map(trail => {
+					return <img src={trail.imgSmall} alt="imageTrail" />;
+				})
+			: '';
+
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" value={this.state.value} onChange={this.handleChange} />
 					<button type="submit"> Search </button>
 				</form>
+				<Grid>
+					<Card>
+						<CardMedia>{images}</CardMedia>
+					</Card>
+				</Grid>
+
+				{/* <img src="this.state.location[0].imgMedium" /> */}
 			</div>
 		);
 	}
