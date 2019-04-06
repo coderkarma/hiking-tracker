@@ -7,13 +7,10 @@ import Typography from '@material-ui/core/Typography';
 // import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-// import { Link } from 'react-router-dom';
-// import { Route } from 'react-router-dom';
-// import SignUp from '../NavBar/Forms/SignUp';
-// import Login from '../NavBar/Forms/Login';
-// import Model from './Model';
+
 import ProfileLogout from './ProfileLogout';
 import LoginSignUp from './LoginSignUp';
+
 const styles = {
 	root: {
 		flexGrow: 1
@@ -31,7 +28,11 @@ function ButtonAppBar(props) {
 	const { classes } = props;
 
 	console.log(props.isLoggedIn);
-	const NavButtons = props.isLoggedIn ? <ProfileLogout /> : <LoginSignUp />;
+	const NavButtons = props.isLoggedIn ? (
+		<ProfileLogout handleLogout={props.handleLogout} />
+	) : (
+		<LoginSignUp handleLogin={props.handleLogin} />
+	);
 	return (
 		<div className={classes.root}>
 			<AppBar position="static">

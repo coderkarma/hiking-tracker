@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
-import { Grid, Card, CardMedia } from '@material-ui/core';
+import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core';
+
+const styles = {
+	card: {
+		maxWidth: 345
+	},
+	media: {
+		height: 140
+	}
+};
 
 class SearchBar extends Component {
 	state = {
@@ -26,6 +35,7 @@ class SearchBar extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		this.getLocation().then(location => {
+			console.log(location);
 			this.setState({
 				location: location.trails
 			});
@@ -33,9 +43,20 @@ class SearchBar extends Component {
 		});
 	};
 	render() {
-		let images = this.state.location
-			? this.state.location.map(trail => {
-					return <img src={trail.imgSmall} alt="imageTrail" />;
+		let trailCards = this.state.location
+			? this.state.location.map((trail, idx) => {
+					return (
+						<Card styles={styles.card}>
+							<CardMedia>
+								<img src={trail.imgSmall} alt="imageTrail" key={idx} />
+								<CardContent>
+									<Typography gutterBottom variant="h5" component="h2">
+										{trail.name}
+									</Typography>
+								</CardContent>
+							</CardMedia>
+						</Card>
+					);
 				})
 			: '';
 
@@ -43,14 +64,13 @@ class SearchBar extends Component {
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" value={this.state.value} onChange={this.handleChange} />
-					<button type="submit"> Search </button>
+					{/* <button type="submit"> Search </button> */}
 				</form>
-				<Grid>
-					<Card>
-						<CardMedia>{images}</CardMedia>
-					</Card>
+				<Grid container>
+					<Grid item xs={12}>
+						{trailCards}
+					</Grid>
 				</Grid>
-
 				{/* <img src="this.state.location[0].imgMedium" /> */}
 			</div>
 		);

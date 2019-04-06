@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { Button, Dialog, DialogActions, DialogTitle, DialogContent, TextField } from '@material-ui/core';
+// import Login from './Forms/Login';
+import axios from 'axios';
+import { Button, Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
 
 function LoginForm(props) {
 	return (
 		<div>
 			<form>
-				<TextField>
-					<input type="email" name="email" placeholder="email" />
-				</TextField>
-				<input type="password" name="password" placeholder="password" />
+				<input type="email" name="loginemail" placeholder="email" onChange={props.handleChange} />
+				<input type="password" name="loginpassword" placeholder="password" onChange={props.handleChange} />
 
 				<button onClick={props.handleSubmit}>Login </button>
 				{/* <Redirect to="/profile" /> */}
@@ -21,8 +21,9 @@ function SignUpForm(props) {
 		<div>
 			{/* <p>sign up</p> */}
 			<form>
-				<input type="email" name="email" placeholder="email" />
-				<input type="password" name="password" placeholder="password" />
+				<input type="text" name="displayname" placeholder="Display Name" onChange={props.handleChange} />
+				<input type="email" name="signupemail" placeholder="email" onChange={props.handleChange} />
+				<input type="password" name="signuppassword" placeholder="password" onChange={props.handleChange} />
 
 				<button onClick={props.handleSubmit}>Submit </button>
 				{/* <Redirect to="/profile" /> */}
@@ -32,15 +33,15 @@ function SignUpForm(props) {
 }
 
 class LoginSignUp extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			type: null,
-			open: false,
-			username: null,
-			password: null
-		};
-	}
+	state = {
+		type: null,
+		open: false,
+		displayname: null,
+		loginpassword: null,
+		signuppassword: null,
+		loginemail: null,
+		signupemail: null
+	};
 
 	showModel = type => {
 		this.setState({
@@ -55,8 +56,53 @@ class LoginSignUp extends Component {
 		});
 	};
 
+	handleChange = e => {
+		console.log(e.target.value);
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
+
+	// check to see if the state type  is login or sigin up
+	handleSubmit = e => {
+		e.preventDefault();
+		const ths = this;
+		if (ths.state.type === 'login') {
+			axios
+				.post('http://localhost:3001/users/login', {
+					email: ths.state.loginemail,
+					password: ths.state.loginpassword
+				})
+				.then(response => {
+					localStorage.token = response.data.signedJwt;
+					console.log('response', response);
+
+					ths.props.handleLogin();
+				})
+				.catch(err => console.log(err));
+		} else if (ths.state.type === 'signup') {
+			axios
+				.post('http://localhost:3001/users/signup', {
+					email: this.state.signupemail,
+					password: this.state.signuppassword,
+					displayname:this.state.displayname
+				})
+				.then(response => {
+					localStorage.token = response.data.signedJwt;
+					console.log('response', response);
+					ths.props.handleLogin();
+				})
+				.catch(err => console.log(err));
+		}
+	};
+
 	render() {
-		const FormsFront = this.state.type === 'login' ? <LoginForm /> : <SignUpForm />;
+		const FormsFront =
+			this.state.type === 'login' ? (
+				<LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+			) : (
+				<SignUpForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+			);
 		return (
 			<div>
 				<Button onClick={e => this.showModel('login')} color="inherit">
@@ -71,9 +117,6 @@ class LoginSignUp extends Component {
 					</DialogTitle>
 					<DialogContent>{FormsFront}</DialogContent>
 					<DialogActions>
-						<Button onClick={this.handleClose} color="primary">
-							Save changes
-						</Button>
 						<Button onClick={this.handleClose} color="primary">
 							Close
 						</Button>

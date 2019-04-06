@@ -6,6 +6,6 @@ import Profile from '../components/Profile/Profile';
 export default (
 	<Switch>
 		<Route exact path="/" component={Home} />
-		<Route path="/profile" component={Profile} />
+		<Route path="/profile" component={Profile}  />
 	</Switch>
 );
