@@ -11,6 +11,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ProfileLogout from './ProfileLogout';
 import LoginSignUp from './LoginSignUp';
 
+
 const styles = {
 	root: {
 		flexGrow: 1
@@ -24,14 +25,14 @@ const styles = {
 	}
 };
 
-function ButtonAppBar(props) {
+function NavBar(props) {
 	const { classes } = props;
 
 	console.log(props.isLoggedIn);
 	const NavButtons = props.isLoggedIn ? (
 		<ProfileLogout handleLogout={props.handleLogout} />
 	) : (
-		<LoginSignUp handleLogin={props.handleLogin} />
+		<LoginSignUp handleLogin={props.handleLogin} {...props} />
 	);
 	return (
 		<div className={classes.root}>
@@ -41,19 +42,20 @@ function ButtonAppBar(props) {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="h6" color="inherit" className={classes.grow}>
-						Hiking Tracker!!
+						Hiking Tracker
 					</Typography>
 					{/* <Model isLoggedIn={props.isLoggedIn} /> */}
 					{NavButtons}
 				</Toolbar>
+			
 			</AppBar>
+			
 		</div>
 	);
 }
-
-ButtonAppBar.propTypes = {
+NavBar.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(NavBar);
 // export default NavBar;

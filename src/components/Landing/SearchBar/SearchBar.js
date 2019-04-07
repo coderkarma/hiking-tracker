@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core';
-
-const styles = {
-	card: {
-		maxWidth: 345
-	},
-	media: {
-		height: 140
-	}
-};
+import { Row, Card, Col, Container, Button, Form } from 'react-bootstrap';
+import axios from 'axios';
 
 class SearchBar extends Component {
 	state = {
 		value: '',
-		location: ''
+		location: '',
+		trailId: ''
 	};
 
 	handleChange = event => {
@@ -42,36 +35,70 @@ class SearchBar extends Component {
 			console.log('you are here:', this.state.location[0].imgMedium);
 		});
 	};
+
+	// !!Todo - add the trail based on
+	addTrail = e => {
+		//let url = `http://localhost:3001/trails/add/${}`;
+		this.getLocation().then(location => {
+			console.log(location);
+			this.setState({
+				trailId: location.trails[0].id
+			});
+			console.log('trail is this', this.state.trailId)
+			console.log('here we are grabbing the trails id ',  this.state.location);
+		});
+	};
+
 	render() {
 		let trailCards = this.state.location
 			? this.state.location.map((trail, idx) => {
 					return (
-						<Card styles={styles.card}>
-							<CardMedia>
-								<img src={trail.imgSmall} alt="imageTrail" key={idx} />
-								<CardContent>
-									<Typography gutterBottom variant="h5" component="h2">
-										{trail.name}
-									</Typography>
-								</CardContent>
-							</CardMedia>
-						</Card>
+						<Container>
+							<Row>
+								<Col xs={6} md={4} lg={4}>
+									<Card>
+										<Card.Img variant="top" src={trail.imgMedium} key={idx} />
+										<Card.Title>{trail.name}</Card.Title>
+										{/* trail id need to add the trail when save button fires only for loggedIn users
+									 */}
+										<Button onClick={this.addTrail}>Save</Button>
+									</Card>
+								</Col>
+
+								<Col xs={6} md={4} lg={4}>
+									<Card>
+										<Card.Img variant="top" src={trail.imgMedium} key={idx} />
+
+										<Card.Title>{trail.name}</Card.Title>
+										<Button>Save</Button>
+									</Card>
+								</Col>
+
+								<Col xs={6} md={4} lg={4}>
+									<Card>
+										<Card.Img variant="top" src={trail.imgMedium} key={idx} />
+
+										<Card.Title>{trail.name}</Card.Title>
+										<Button>Save</Button>
+									</Card>
+								</Col>
+							</Row>
+						</Container>
 					);
 				})
 			: '';
 
 		return (
 			<div>
-				<form onSubmit={this.handleSubmit}>
-					<input type="text" value={this.state.value} onChange={this.handleChange} />
-					{/* <button type="submit"> Search </button> */}
-				</form>
-				<Grid container>
-					<Grid item xs={12}>
-						{trailCards}
-					</Grid>
-				</Grid>
-				{/* <img src="this.state.location[0].imgMedium" /> */}
+				<Form onSubmit={this.handleSubmit}>
+					<input
+						type="text"
+						value={this.state.value}
+						onChange={this.handleChange}
+						placeholder="Search Trails by City"
+					/>
+				</Form>
+				{trailCards}
 			</div>
 		);
 	}

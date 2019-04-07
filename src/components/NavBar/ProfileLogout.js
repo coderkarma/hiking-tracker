@@ -8,7 +8,9 @@ class ProfileLogout extends Component {
 				<Button onClick={this.props.handleLogout} color="inherit">
 					Logout
 				</Button>
-				<Button color="inherit">Profile</Button>
+				<Button onClick={this.props.editProfile} color="inherit">
+					Profile
+				</Button>
 			</div>
 		);
 	}

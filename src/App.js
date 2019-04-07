@@ -7,23 +7,22 @@ import MyRoutes from './config/routes';
 import { Switch, Route } from 'react-router-dom';
 import Home from './components/Home/Home';
 import Profile from './components/Profile/Profile';
-import PageNotFound from './components/Profile/PageNotFound';
+// import PageNotFound from './components/Profile/PageNotFound';
 
 function MyRouters(props) {
 	if (props.isLoggedIn) {
 		return (
 			<div>
 				<Route exact path="/" component={Home} />
-				<Route path="/profile" component={Profile} />
-				{/* <Route path="*" component={PageNotFound} /> */}
+				<Route path="/profile" component={Profile}  />
+			
+				{/* <Route path="*" component={PageNotFound} />  */}
 			</div>
 		);
 	} else {
 		return (
 			<div>
 				<Route exact path="/" component={Home} />
-
-				{/* <Route from="*" path="*" component={PageNotFound} /> */}
 			</div>
 		);
 	}
@@ -45,6 +44,13 @@ class App extends Component {
 			isLoggedIn: false
 		});
 	};
+
+	editProfile = e => {
+		// this.setState({
+		// 	isLoggedIn:true
+		// })
+	};
+
 	render() {
 		return (
 			<div className="App">
@@ -55,6 +61,7 @@ class App extends Component {
 				/>
 				<Switch>
 					<MyRouters isLoggedIn={this.state.isLoggedIn} />
+					{/* <Route path="*" component={PageNotFound} /> */}
 				</Switch>
 				<SearchBar />
 			</div>

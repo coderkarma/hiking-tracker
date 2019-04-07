@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-// import Login from './Forms/Login';
 import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
+import { Form } from 'react-bootstrap';
 
 function LoginForm(props) {
 	return (
 		<div>
-			<form>
-				<input type="email" name="loginemail" placeholder="email" onChange={props.handleChange} />
-				<input type="password" name="loginpassword" placeholder="password" onChange={props.handleChange} />
+			<Form>
+				<form>
+					<input type="email" name="loginemail" placeholder="email" onChange={props.handleChange} />
+					<input type="password" name="loginpassword" placeholder="password" onChange={props.handleChange} />
 
-				<button onClick={props.handleSubmit}>Login </button>
-				{/* <Redirect to="/profile" /> */}
-			</form>
+					<Button onClick={props.handleSubmit}>Login </Button>
+					{/* <Redirect to="/profile" /> */}
+				</form>
+			</Form>
 		</div>
 	);
 }
@@ -25,7 +27,9 @@ function SignUpForm(props) {
 				<input type="email" name="signupemail" placeholder="email" onChange={props.handleChange} />
 				<input type="password" name="signuppassword" placeholder="password" onChange={props.handleChange} />
 
-				<button onClick={props.handleSubmit}>Submit </button>
+				<Button onClick={props.handleSubmit}>
+					Submit
+				</Button>
 				{/* <Redirect to="/profile" /> */}
 			</form>
 		</div>
@@ -79,13 +83,14 @@ class LoginSignUp extends Component {
 
 					ths.props.handleLogin();
 				})
+				// .then(() => this.props.history.push('/profile'))
 				.catch(err => console.log(err));
 		} else if (ths.state.type === 'signup') {
 			axios
 				.post('http://localhost:3001/users/signup', {
 					email: this.state.signupemail,
 					password: this.state.signuppassword,
-					displayname:this.state.displayname
+					displayname: this.state.displayname
 				})
 				.then(response => {
 					localStorage.token = response.data.signedJwt;
@@ -105,7 +110,7 @@ class LoginSignUp extends Component {
 			);
 		return (
 			<div>
-				<Button onClick={e => this.showModel('login')} color="inherit">
+				<Button  onClick={e => this.showModel('login')} color="inherit">
 					Login
 				</Button>
 				<Button onClick={e => this.showModel('signup')} color="inherit">
@@ -117,9 +122,9 @@ class LoginSignUp extends Component {
 					</DialogTitle>
 					<DialogContent>{FormsFront}</DialogContent>
 					<DialogActions>
-						<Button onClick={this.handleClose} color="primary">
+						<button onClick={this.handleClose} color="primary">
 							Close
-						</Button>
+						</button>
 					</DialogActions>
 				</Dialog>
 			</div>
