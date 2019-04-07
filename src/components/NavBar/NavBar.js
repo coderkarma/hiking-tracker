@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -10,7 +11,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import ProfileLogout from './ProfileLogout';
 import LoginSignUp from './LoginSignUp';
-
 
 const styles = {
 	root: {
@@ -38,18 +38,13 @@ function NavBar(props) {
 		<div className={classes.root}>
 			<AppBar position="static">
 				<Toolbar>
-					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-						<MenuIcon />
-					</IconButton>
 					<Typography variant="h6" color="inherit" className={classes.grow}>
-						Hiking Tracker
+						<Link to="/">Hiking Tracker</Link>
 					</Typography>
 					{/* <Model isLoggedIn={props.isLoggedIn} /> */}
 					{NavButtons}
 				</Toolbar>
-			
 			</AppBar>
-			
 		</div>
 	);
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 class ProfileLogout extends Component {
 	render() {
@@ -8,9 +9,9 @@ class ProfileLogout extends Component {
 				<Button onClick={this.props.handleLogout} color="inherit">
 					Logout
 				</Button>
-				<Button onClick={this.props.editProfile} color="inherit">
+				<Link to="/profile" color="inherit">
 					Profile
-				</Button>
+				</Link>
 			</div>
 		);
 	}

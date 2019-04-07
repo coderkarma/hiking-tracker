@@ -27,9 +27,7 @@ function SignUpForm(props) {
 				<input type="email" name="signupemail" placeholder="email" onChange={props.handleChange} />
 				<input type="password" name="signuppassword" placeholder="password" onChange={props.handleChange} />
 
-				<Button onClick={props.handleSubmit}>
-					Submit
-				</Button>
+				<Button onClick={props.handleSubmit}>Submit</Button>
 				{/* <Redirect to="/profile" /> */}
 			</form>
 		</div>
@@ -78,10 +76,10 @@ class LoginSignUp extends Component {
 					password: ths.state.loginpassword
 				})
 				.then(response => {
-					localStorage.token = response.data.signedJwt;
+					localStorage.setItem('token', response.data.signedJwt);
 					console.log('response', response);
 
-					ths.props.handleLogin();
+					ths.props.handleLogin(response.data.user);
 				})
 				// .then(() => this.props.history.push('/profile'))
 				.catch(err => console.log(err));
@@ -110,7 +108,7 @@ class LoginSignUp extends Component {
 			);
 		return (
 			<div>
-				<Button  onClick={e => this.showModel('login')} color="inherit">
+				<Button onClick={e => this.showModel('login')} color="inherit">
 					Login
 				</Button>
 				<Button onClick={e => this.showModel('signup')} color="inherit">
