@@ -91,12 +91,6 @@ class App extends Component {
 		);
 	};
 
-	editProfile = e => {
-		// this.setState({
-		// 	isLoggedIn:true
-		// })
-	};
-
 	render() {
 		if (this.state.loadingUser) {
 			return null;

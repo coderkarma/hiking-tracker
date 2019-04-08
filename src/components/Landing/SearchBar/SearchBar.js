@@ -35,7 +35,7 @@ class SearchBar extends Component {
 		});
 	};
 
-	// !!Todo - add the trail based on
+	// !?   Add the trail on the user profile
 	addTrail = trail => {
 		console.log(this.props);
 		const token = localStorage.getItem('token');
@@ -66,35 +66,17 @@ class SearchBar extends Component {
 							<Card>
 								<Card.Img variant="top" src={trail.imgMedium} key={idx} />
 								<Card.Title>{trail.name}</Card.Title>
-								{/* trail id need to add the trail when save button fires only for loggedIn users
-									 */}
+
 								<Button onClick={() => this.addTrail(trail)}>Save</Button>
 							</Card>
 						</Col>
-						// <Col xs={6} md={4} lg={4}>
-						// 	<Card>
-						// 		<Card.Img variant="top" src={trail.imgMedium} key={idx} />
-
-						// 		<Card.Title>{trail.name}</Card.Title>
-						// 		<Button>Save</Button>
-						// 	</Card>
-						// </Col>
-
-						// <Col xs={6} md={4} lg={4}>
-						// 	<Card>
-						// 		<Card.Img variant="top" src={trail.imgMedium} key={idx} />
-
-						// 		<Card.Title>{trail.name}</Card.Title>
-						// 		<Button>Save</Button>
-						// 	</Card>
-						// </Col> */}
 					);
 				})
 			: '';
 
 		return (
 			<div>
-				<Form onSubmit={this.handleSubmit}>
+				<Form className="py-3" onSubmit={this.handleSubmit}>
 					<input
 						type="text"
 						value={this.state.value}

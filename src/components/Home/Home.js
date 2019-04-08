@@ -2,33 +2,33 @@ import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
 import SearchBar from '../Landing/SearchBar/SearchBar';
 import trail1 from './trail1.jpeg';
+import trail2 from './trail2.jpeg';
+import trail3 from './trail3.jpeg';
+import './Home.css'
 
 class Home extends Component {
 	render(props) {
 		return (
 			<div>
 				<Carousel>
-					<Carousel.Item>
+					<Carousel.Item  className="carousel-images">
 						<img className="d-block w-100" src={trail1} alt="First slide" />
 						<Carousel.Caption>
-							<h3>First slide label</h3>
-							<p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+							<h3>Find your trails based on your location</h3>
 						</Carousel.Caption>
 					</Carousel.Item>
 					<Carousel.Item>
-						<img className="d-block w-100" src="./trail2.jpeg" alt="Third slide" />
+						<img className="d-block w-100" src={trail2} alt="Third slide" />
 
 						<Carousel.Caption>
-							<h3>Second slide label</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+							<h3>Explore Hiking Trails</h3>
 						</Carousel.Caption>
 					</Carousel.Item>
 					<Carousel.Item>
-						<img className="d-block w-100" src="./trail3.jpeg" alt="Third slide" />
+						<img className="d-block w-100" src={trail3} alt="Third slide" />
 
 						<Carousel.Caption>
-							<h3>Third slide label</h3>
-							<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+							<h3>Hiking Trails are beautiful</h3>
 						</Carousel.Caption>
 					</Carousel.Item>
 				</Carousel>

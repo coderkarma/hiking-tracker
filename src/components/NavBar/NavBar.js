@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import './NavBar.css';
 // import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+// import MenuIcon from '@material-ui/icons/Menu';
 
 import ProfileLogout from './ProfileLogout';
 import LoginSignUp from './LoginSignUp';
@@ -36,12 +37,16 @@ function NavBar(props) {
 	);
 	return (
 		<div className={classes.root}>
-			<AppBar position="static">
+			<AppBar position="fixed">
 				<Toolbar>
+					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+						<i class="fas fa-hiking" />
+					</IconButton>
 					<Typography variant="h6" color="inherit" className={classes.grow}>
-						<Link to="/">Hiking Tracker</Link>
+						<Link to="/" className="link">
+							Hiking Tracker
+						</Link>
 					</Typography>
-					{/* <Model isLoggedIn={props.isLoggedIn} /> */}
 					{NavButtons}
 				</Toolbar>
 			</AppBar>

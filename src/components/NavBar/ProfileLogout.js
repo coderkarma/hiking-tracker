@@ -10,7 +10,7 @@ class ProfileLogout extends Component {
 					Logout
 				</Button>
 				<Link to="/profile" color="inherit">
-					Profile
+					PROFILE
 				</Link>
 			</div>
 		);

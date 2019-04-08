@@ -1,0 +1,11 @@
+a {
+    color: white
+}
+
+a:hover {
+    color: red;
+    text-decoration: none;
+}
+i {
+    font-size: 34px;
+}
