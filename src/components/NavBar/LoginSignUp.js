@@ -92,7 +92,9 @@ class LoginSignUp extends Component {
 				})
 				.then(response => {
 					localStorage.token = response.data.signedJwt;
+					// MAYBE set the state
 					console.log('response', response);
+					// try passing user into handleLogin()
 					ths.props.handleLogin();
 				})
 				.catch(err => console.log(err));

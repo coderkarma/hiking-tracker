@@ -4,17 +4,17 @@ import SearchBar from '../Landing/SearchBar/SearchBar';
 import trail1 from './trail1.jpeg';
 import trail2 from './trail2.jpeg';
 import trail3 from './trail3.jpeg';
-import './Home.css'
+import './Home.css';
 
 class Home extends Component {
 	render(props) {
 		return (
 			<div>
 				<Carousel>
-					<Carousel.Item  className="carousel-images">
+					<Carousel.Item className="carousel-images">
 						<img className="d-block w-100" src={trail1} alt="First slide" />
 						<Carousel.Caption>
-							<h3>Find your trails based on your location</h3>
+							<h3>Find trails based on your location</h3>
 						</Carousel.Caption>
 					</Carousel.Item>
 					<Carousel.Item>

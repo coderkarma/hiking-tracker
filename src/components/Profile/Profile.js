@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Container, Row } from 'react-bootstrap';
 import './Profile.css';
 class Profile extends Component {
 	state = {
@@ -8,7 +8,8 @@ class Profile extends Component {
 		email: '',
 		trailId: localStorage.getItem('userId'),
 		password: '',
-		trails: []
+		trails: [],
+		datejoined: ''
 	};
 
 	deleteTrail = id => {
@@ -28,8 +29,8 @@ class Profile extends Component {
 		const { user } = this.props;
 		return (
 			<div>
-				`<h1 className="profile"> Welcome to your profile </h1>`
-				<h2>Display name:  {user.displayname}</h2>
+				<h1 className="profile"> Welcome to your profile </h1>
+				<h2>Display name: {user.displayname}</h2>
 				<div>
 					<h4>Email: {user.email}</h4>
 				</div>

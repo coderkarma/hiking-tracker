@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar/NavBar';
-import SearchBar from './components/Landing/SearchBar/SearchBar';
+// import SearchBar from './components/Landing/SearchBar/SearchBar';
 
 import './App.css';
 // import MyRoutes from './config/routes';

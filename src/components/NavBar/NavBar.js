@@ -40,11 +40,11 @@ function NavBar(props) {
 			<AppBar position="fixed">
 				<Toolbar>
 					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-						<i class="fas fa-hiking" />
+						{/* <i class="fas fa-hiking" /> */}
 					</IconButton>
 					<Typography variant="h6" color="inherit" className={classes.grow}>
 						<Link to="/" className="link">
-							Hiking Tracker
+							Hiking <i class="fas fa-hiking" /> Tracker
 						</Link>
 					</Typography>
 					{NavButtons}
