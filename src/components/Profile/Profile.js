@@ -27,6 +27,7 @@ class Profile extends Component {
 
 	render() {
 		const { user } = this.props;
+		console.log("this user state coming from app as a props", user)
 		return (
 			<div>
 				<h1 className="profile"> Welcome to your profile </h1>
@@ -48,6 +49,7 @@ class Profile extends Component {
 											<img src={trail.imgMedium} alt={trail.name} />
 											<Card.Title>{trail.name}</Card.Title>
 
+											<Card.Text>{trail.summary}</Card.Text>
 											<Button variant="danger" onClick={() => this.deleteTrail(trail.id)}>
 												Remove
 											</Button>

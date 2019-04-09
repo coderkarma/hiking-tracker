@@ -3,10 +3,13 @@ import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
 import { Form } from 'react-bootstrap';
 
+
+
+
 function LoginForm(props) {
 	return (
 		<div>
-			<Form>
+	
 				<form>
 					<input type="email" name="loginemail" placeholder="email" onChange={props.handleChange} />
 					<input type="password" name="loginpassword" placeholder="password" onChange={props.handleChange} />
@@ -14,14 +17,14 @@ function LoginForm(props) {
 					<Button onClick={props.handleSubmit}>Login </Button>
 					{/* <Redirect to="/profile" /> */}
 				</form>
-			</Form>
+			
 		</div>
 	);
 }
 function SignUpForm(props) {
 	return (
 		<div>
-			{/* <p>sign up</p> */}
+		
 			<form>
 				<input type="text" name="displayname" placeholder="Display Name" onChange={props.handleChange} />
 				<input type="email" name="signupemail" placeholder="email" onChange={props.handleChange} />
@@ -79,7 +82,7 @@ class LoginSignUp extends Component {
 					localStorage.setItem('token', response.data.signedJwt);
 					console.log('response', response);
 
-					ths.props.handleLogin(response.data.user);
+					ths.props.handleLogin();
 				})
 				// .then(() => this.props.history.push('/profile'))
 				.catch(err => console.log(err));
@@ -93,8 +96,9 @@ class LoginSignUp extends Component {
 				.then(response => {
 					localStorage.token = response.data.signedJwt;
 					// MAYBE set the state
-					console.log('response', response);
+					console.log('response is here *****', response);
 					// try passing user into handleLogin()
+					
 					ths.props.handleLogin();
 				})
 				.catch(err => console.log(err));

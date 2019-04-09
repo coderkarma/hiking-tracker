@@ -4,13 +4,14 @@ import './TrailModel.css'
 import axios from 'axios'
 
 class TraiModel extends Component {
-	constructor(props) {
-		super(props);
+	// constructor(props) {
+	// 	super(props);
 
-		this.state = {
+		// this.
+		state = {
 			lgShow: false
 		};
-	}
+	// }
 
 	render() {
 		console.log(this.props.trailDetails)

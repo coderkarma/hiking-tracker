@@ -40,11 +40,10 @@ function NavBar(props) {
 			<AppBar position="fixed">
 				<Toolbar>
 					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-						{/* <i class="fas fa-hiking" /> */}
 					</IconButton>
 					<Typography variant="h6" color="inherit" className={classes.grow}>
 						<Link to="/" className="link">
-							Hiking <i class="fas fa-hiking" /> Tracker
+							Hiking <i className="fas fa-hiking" /> Tracker
 						</Link>
 					</Typography>
 					{NavButtons}
@@ -58,4 +57,3 @@ NavBar.propTypes = {
 };
 
 export default withStyles(styles)(NavBar);
-// export default NavBar;

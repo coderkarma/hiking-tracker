@@ -40,6 +40,7 @@ class App extends Component {
 	componentDidMount() {
 		this.refreshUser();
 	}
+
 	handleLogin = user => {
 		console.log(this.props);
 		this.setState(
@@ -69,7 +70,6 @@ class App extends Component {
 				}
 			})
 			.then(res => {
-				console.log(res);
 				this.setState({ user: res.data, loadingUser: false, isLoggedIn: true });
 			})
 			.catch(() => {
