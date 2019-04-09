@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {  Modal } from 'react-bootstrap';
 import './TrailModel.css'
-import axios from 'axios'
+// import axios from 'axios'
 
 class TraiModel extends Component {
 	// constructor(props) {

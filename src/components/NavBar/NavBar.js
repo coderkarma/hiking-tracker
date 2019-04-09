@@ -29,7 +29,6 @@ const styles = {
 function NavBar(props) {
 	const { classes } = props;
 
-	console.log(props.isLoggedIn);
 	const NavButtons = props.isLoggedIn ? (
 		<ProfileLogout handleLogout={props.handleLogout} />
 	) : (

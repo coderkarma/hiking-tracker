@@ -27,7 +27,8 @@ class Profile extends Component {
 
 	render() {
 		const { user } = this.props;
-		console.log("this user state coming from app as a props", user)
+		console.log('result => ', user);
+
 		return (
 			<div>
 				<h1 className="profile"> Welcome to your profile </h1>

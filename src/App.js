@@ -42,7 +42,8 @@ class App extends Component {
 	}
 
 	handleLogin = user => {
-		console.log(this.props);
+		// console.log(this.props);
+		console.log('unique user', user)
 		this.setState(
 			{
 				isLoggedIn: true,

@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
-import { Form } from 'react-bootstrap';
-
-
-
+// import { Form } from 'react-bootstrap';
 
 function LoginForm(props) {
 	return (
 		<div>
-	
-				<form>
-					<input type="email" name="loginemail" placeholder="email" onChange={props.handleChange} />
-					<input type="password" name="loginpassword" placeholder="password" onChange={props.handleChange} />
+			<form>
+				<input type="email" name="loginemail" placeholder="email" onChange={props.handleChange} />
+				<input type="password" name="loginpassword" placeholder="password" onChange={props.handleChange} />
 
-					<Button onClick={props.handleSubmit}>Login </Button>
-					{/* <Redirect to="/profile" /> */}
-				</form>
-			
+				<Button onClick={props.handleSubmit}>Login </Button>
+				{/* <Redirect to="/profile" /> */}
+			</form>
 		</div>
 	);
 }
 function SignUpForm(props) {
 	return (
 		<div>
-		
 			<form>
 				<input type="text" name="displayname" placeholder="Display Name" onChange={props.handleChange} />
 				<input type="email" name="signupemail" placeholder="email" onChange={props.handleChange} />
@@ -80,11 +74,10 @@ class LoginSignUp extends Component {
 				})
 				.then(response => {
 					localStorage.setItem('token', response.data.signedJwt);
-					console.log('response', response);
+					// console.log('response', response);
 
-					ths.props.handleLogin();
+					ths.props.handleLogin(response.data.user);
 				})
-				// .then(() => this.props.history.push('/profile'))
 				.catch(err => console.log(err));
 		} else if (ths.state.type === 'signup') {
 			axios
@@ -95,11 +88,10 @@ class LoginSignUp extends Component {
 				})
 				.then(response => {
 					localStorage.token = response.data.signedJwt;
-					// MAYBE set the state
-					console.log('response is here *****', response);
-					// try passing user into handleLogin()
-					
-					ths.props.handleLogin();
+
+					console.log('response is here *****', response.data.user);
+					// try passing user into handleLogin
+				  ths.props.handleLogin(response.data.user);
 				})
 				.catch(err => console.log(err));
 		}
