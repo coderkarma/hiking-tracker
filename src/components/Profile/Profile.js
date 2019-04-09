@@ -25,9 +25,48 @@ class Profile extends Component {
 			});
 	};
 
+	onHandleChange = e => {
+		console.log(this.state)
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
+
+	//
+	componentDidMount() {
+		let id = this.props.user._id;
+		console.log('this is id that iam looking for', id);
+	}
+
+	// ! Making axios call for edit user's profile
+	editProfileHandle = e => {
+		// console.log('hello dai');
+		e.preventDefault();
+		let id = this.props.user._id;
+		// console.log(id);
+		let updateData = {};
+		if(this.state.displayname!==''){
+			updateData['displayname']=this.state.displayname;
+		}
+		if(this.state.email!==''){
+			updateData['email']=this.state.email;
+		}
+		console.log(updateData)
+		axios
+			.put(`http://localhost:3001/users/${id}`, updateData)
+			.then(response => {
+				// console.log(response.data)
+				// this.setState({
+				// 	displayname: response.displayname,
+				// 	email: response.email
+				// });
+			})
+			// .catch(err => console.log(err));
+	};
+
 	render() {
 		const { user } = this.props;
-		console.log('result => ', user);
+		// /console.log('result => ', user);
 
 		return (
 			<div>
@@ -36,6 +75,15 @@ class Profile extends Component {
 				<div>
 					<h4>Email: {user.email}</h4>
 				</div>
+				{/*  */}
+
+				<form action="PUT">
+					<input type="text" placeholder={user.displayname} onChange={this.onHandleChange} name="displayname" />
+					<input type="text" placeholder="Email" onChange={this.onHandleChange} name="email" />
+					<button onClick={this.editProfileHandle}>Edit</button>
+				</form>
+
+				{/*  */}
 				<div>
 					{user.trails.map(trail => {
 						if (!trail) {

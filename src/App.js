@@ -78,6 +78,12 @@ class App extends Component {
 			});
 	};
 
+	handleEditProfile = e => {
+		e.preventDefaut();
+
+		axios.put('')
+	}
+
 	handleLogout = () => {
 		localStorage.clear();
 		this.setState(
@@ -93,6 +99,7 @@ class App extends Component {
 	};
 
 	render() {
+
 		if (this.state.loadingUser) {
 			return null;
 		}
