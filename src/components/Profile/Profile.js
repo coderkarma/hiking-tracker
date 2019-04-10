@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Card, Container, Row } from 'react-bootstrap';
+import { Button, Card, Container, Row, Form } from 'react-bootstrap';
 import './Profile.css';
 class Profile extends Component {
 	state = {
@@ -26,7 +26,7 @@ class Profile extends Component {
 	};
 
 	onHandleChange = e => {
-		console.log(this.state)
+		console.log(this.state);
 		this.setState({
 			[e.target.name]: e.target.value
 		});
@@ -40,50 +40,46 @@ class Profile extends Component {
 
 	// ! Making axios call for edit user's profile
 	editProfileHandle = e => {
-		// console.log('hello dai');
 		e.preventDefault();
 		let id = this.props.user._id;
-		// console.log(id);
+
 		let updateData = {};
-		if(this.state.displayname!==''){
-			updateData['displayname']=this.state.displayname;
+		if (this.state.displayname !== '') {
+			updateData['displayname'] = this.state.displayname;
 		}
-		if(this.state.email!==''){
-			updateData['email']=this.state.email;
+		if (this.state.email !== '') {
+			updateData['email'] = this.state.email;
 		}
-		console.log(updateData)
-		axios
-			.put(`http://localhost:3001/users/${id}`, updateData)
-			.then(response => {
-				// console.log(response.data)
-				// this.setState({
-				// 	displayname: response.displayname,
-				// 	email: response.email
-				// });
-			})
-			// .catch(err => console.log(err));
+		console.log(updateData);
+		axios.put(`http://localhost:3001/users/${id}`, updateData).then(() => {
+			this.props.refreshUser();
+		});
 	};
 
 	render() {
 		const { user } = this.props;
-		// /console.log('result => ', user);
-
 		return (
 			<div>
-				<h1 className="profile"> Welcome to your profile </h1>
-				<h2>Display name: {user.displayname}</h2>
+				<h1 className="profile"> Welcome {user.displayname} </h1>
 				<div>
-					<h4>Email: {user.email}</h4>
+					<h5>Email: {user.email}</h5>
 				</div>
-				{/*  */}
 
-				<form action="PUT">
-					<input type="text" placeholder={user.displayname} onChange={this.onHandleChange} name="displayname" />
-					<input type="text" placeholder="Email" onChange={this.onHandleChange} name="email" />
-					<button onClick={this.editProfileHandle}>Edit</button>
-				</form>
+				<Form.Group action="PUT">
+					<input
+						type="text"
+						placeholder={user.displayname}
+						onChange={this.onHandleChange}
+						name="displayname"
+					/>
+					<input type="text" placeholder={user.email} onChange={this.onHandleChange} name="email" />
+					<button onClick={this.editProfileHandle} variant="info">
+						Edit
+					</button>
+				</Form.Group>
 
-				{/*  */}
+				<p>List your tails to visit in future!!</p>
+
 				<div>
 					{user.trails.map(trail => {
 						if (!trail) {
@@ -93,7 +89,6 @@ class Profile extends Component {
 							<div key={trail.id}>
 								<Container>
 									<Row>
-										{/* <Col xs={6} md={4} lg={4}> */}
 										<Card className="profile-card">
 											<img src={trail.imgMedium} alt={trail.name} />
 											<Card.Title>{trail.name}</Card.Title>
@@ -103,7 +98,6 @@ class Profile extends Component {
 												Remove
 											</Button>
 										</Card>
-										{/* </Col> */}
 									</Row>
 								</Container>
 							</div>

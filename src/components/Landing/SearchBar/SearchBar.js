@@ -10,7 +10,7 @@ class SearchBar extends Component {
 			location: '',
 			trailId: '',
 			trailsDetailModel: false,
-			selectedTrailsDetail:''
+			selectedTrailsDetail: ''
 		};
 	}
 
@@ -22,19 +22,22 @@ class SearchBar extends Component {
 	};
 
 	showModel = e => {
-		let trailsId=e.target.dataset.id;
-		axios.get('http://localhost:3001/trails/details/'+trailsId).then((response)=>{
-			this.setState({
-				trailsDetailModel: true,
-				selectedTrailsDetail:response.data
+		let trailsId = e.target.dataset.id;
+		axios
+			.get('http://localhost:3001/trails/details/' + trailsId)
+			.then(response => {
+				this.setState({
+					trailsDetailModel: true,
+					selectedTrailsDetail: response.data
+				});
+				console.log(response);
+			})
+			.catch(err => {
+				console.log(err);
 			});
-			console.log(response)
-		}).catch(err=>{
-			console.log(err)
-		})
-		console.log('update')
+		console.log('update');
 		// }
-		
+
 		// console.log(this.state.trailsDetailModel);
 	};
 	hideModel = e => {
@@ -58,7 +61,7 @@ class SearchBar extends Component {
 			this.setState({
 				location: location.trails
 			});
-			console.log('you are here:', this.state.location[0].imgMedium);
+			// console.log('you are here:', this.state.location[0].imgMedium);
 		});
 	};
 
@@ -91,7 +94,12 @@ class SearchBar extends Component {
 					return (
 						<Col xs={6} md={4} lg={4} key={idx}>
 							<Card>
-								<Card.Img variant="top" data-id={trail.id} src={trail.imgMedium} onClick={this.showModel} />
+								<Card.Img
+									variant="top"
+									data-id={trail.id}
+									src={trail.imgMedium}
+									onClick={this.showModel}
+								/>
 								<Card.Body>
 									<Card.Title>{trail.name}</Card.Title>
 									{/* <Card.text>{trail.summary}</Card.text>  */}
@@ -113,7 +121,11 @@ class SearchBar extends Component {
 						placeholder="Search Trails by City"
 					/>
 				</Form>
-				<TrailModel trailDetails={this.state.selectedTrailsDetail} showDetail={this.state.trailsDetailModel} hideDetail={this.hideModel} />
+				<TrailModel
+					trailDetails={this.state.selectedTrailsDetail}
+					showDetail={this.state.trailsDetailModel}
+					hideDetail={this.hideModel}
+				/>
 				<Container>
 					<Row>{trailCards}</Row>
 				</Container>

@@ -1,5 +1,9 @@
+body {
+    background-color: rgb(225, 230, 227);
+}
+
 .profile-card {
-    margin: 0 auto;
+    margin: auto;
 
 }
 

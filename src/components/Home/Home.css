@@ -1,4 +1,8 @@
- .carousel-item img {
+body {
+   background-color: #fcfcfc;
+}
+
+.carousel-item img {
      width: 75%;
      height: 600px;
      margin: 0 auto;
