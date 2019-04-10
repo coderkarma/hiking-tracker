@@ -4,9 +4,17 @@ body {
 
 .profile-card {
     margin: auto;
+    width: 400px;
+    height: auto;
+    margin-bottom: 1em;
 
 }
 
 .profile {
     padding-top: 2em;
+}
+
+.saved-card {
+    width: 100%;
+    height: auto;
 }

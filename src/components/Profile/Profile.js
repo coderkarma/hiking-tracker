@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Card, Container, Row, Form } from 'react-bootstrap';
+import { Button, Card, Container, Row, Form , Col} from 'react-bootstrap';
 import './Profile.css';
 class Profile extends Component {
 	state = {
@@ -87,7 +87,8 @@ class Profile extends Component {
 						}
 						return (
 							<div key={trail.id}>
-								<Container>
+							
+								<Container className="saved-card">
 									<Row>
 										<Card className="profile-card">
 											<img src={trail.imgMedium} alt={trail.name} />

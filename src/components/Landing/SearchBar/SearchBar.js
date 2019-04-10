@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Row, Card, Col, Container, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import TrailModel from '../TrailModel';
+import './SearchBar.css'
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
@@ -93,7 +94,7 @@ class SearchBar extends Component {
 			? this.state.location.map((trail, idx) => {
 					return (
 						<Col xs={6} md={4} lg={4} key={idx}>
-							<Card>
+							<Card className="api-cards">
 								<Card.Img
 									variant="top"
 									data-id={trail.id}
@@ -126,7 +127,7 @@ class SearchBar extends Component {
 					showDetail={this.state.trailsDetailModel}
 					hideDetail={this.hideModel}
 				/>
-				<Container>
+				<Container >
 					<Row>{trailCards}</Row>
 				</Container>
 			</div>
