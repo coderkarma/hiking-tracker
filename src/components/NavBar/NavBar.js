@@ -38,11 +38,10 @@ function NavBar(props) {
 		<div className={classes.root}>
 			<AppBar position="fixed">
 				<Toolbar>
-					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-					</IconButton>
+					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu" />
 					<Typography variant="h6" color="inherit" className={classes.grow}>
 						<Link to="/" className="link">
-							Hiking <i className="fas fa-hiking" /> Tracker
+							<span className="animated fadeInLeft">Hiking</span> <i className="fas fa-hiking" /> Tracker
 						</Link>
 					</Typography>
 					{NavButtons}

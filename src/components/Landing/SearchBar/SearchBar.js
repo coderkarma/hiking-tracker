@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Card, Col, Container, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import TrailModel from '../TrailModel';
-import './SearchBar.css'
+import './SearchBar.css';
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
@@ -25,21 +25,17 @@ class SearchBar extends Component {
 	showModel = e => {
 		let trailsId = e.target.dataset.id;
 		axios
-			.get('http://localhost:3001/trails/details/' + trailsId)
+			.get(`http://localhost:3001/trails/details/ ${trailsId}`)
 			.then(response => {
+				console.log(response.data.trails);
 				this.setState({
 					trailsDetailModel: true,
-					selectedTrailsDetail: response.data
+					selectedTrailsDetail: response.data.trails[0]
 				});
-				console.log(response);
 			})
 			.catch(err => {
 				console.log(err);
 			});
-		console.log('update');
-		// }
-
-		// console.log(this.state.trailsDetailModel);
 	};
 	hideModel = e => {
 		this.setState({
@@ -90,6 +86,7 @@ class SearchBar extends Component {
 	};
 
 	render() {
+		console.log(this.state.selectedTrailsDetail);
 		let trailCards = this.state.location
 			? this.state.location.map((trail, idx) => {
 					return (
@@ -127,7 +124,7 @@ class SearchBar extends Component {
 					showDetail={this.state.trailsDetailModel}
 					hideDetail={this.hideModel}
 				/>
-				<Container >
+				<Container className="searched-trail">
 					<Row>{trailCards}</Row>
 				</Container>
 			</div>

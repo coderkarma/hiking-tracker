@@ -1,3 +1,7 @@
 .modal {
     z-index: 10500;
 }
+
+textarea {
+    width: 100%;
+}
