@@ -13,7 +13,6 @@ class TrailModel extends Component {
 
 	saveComment = e => {
 		e.preventDefault();
-
 		let decoded = jwt_decode(localStorage.token);
 
 		console.log(decoded);
@@ -22,17 +21,12 @@ class TrailModel extends Component {
 			body: this.state.newComment,
 			userId: decoded._id,
 			trailId: this.props.trailDetails.id,
-			dateCreated: ''
+			dateCreated: new Date().toLocaleString()
 		};
 
 		console.log(comment);
 
 		axios.post('http://localhost:3001/comment', comment);
-	};
-
-
-	componentDidMount = () => {
-		this.fetchComments();
 	};
 
 	handleChange = e => {
@@ -41,7 +35,8 @@ class TrailModel extends Component {
 		});
 	};
 
-	fetchComments = () => {
+	fetchComments = (e) => {
+		e.preventDefault()
 		console.log('in show comments');
 		axios
 			.get(`http://localhost:3001/trails/comments/${this.props.trailDetails.id}`)
@@ -57,7 +52,11 @@ class TrailModel extends Component {
 	};
 
 	render() {
-		console.log(this.props.trailDetails);
+		console.log(this.state.comments);
+		let comment = this.state.comments? this.state.comments.map(comment => {
+			return (<p>{comment.body}</p>)
+		}) : null
+		
 		return (
 			<Modal
 				size="lg"
@@ -73,7 +72,8 @@ class TrailModel extends Component {
 				<Modal.Body>
 					<textarea id="comment" cols="30" rows="10" name="newComment" onChange={this.handleChange} />
 					<input type="button" value="submit" onClick={this.saveComment} />
-					<Button onClick={() => this.fetchComments()}>Show Comments</Button>
+					<input type="button" value="Show Comments" onClick={this.fetchComments} />
+					{comment}
 				</Modal.Body>
 			</Modal>
 		);

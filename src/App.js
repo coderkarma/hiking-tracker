@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar/NavBar';
-// import SearchBar from './components/Landing/SearchBar/SearchBar';
 
 import './App.css';
 // import MyRoutes from './config/routes';
@@ -42,8 +41,6 @@ class App extends Component {
 	}
 
 	handleLogin = user => {
-		// console.log(this.props);
-		console.log('unique user', user)
 		this.setState(
 			{
 				isLoggedIn: true,
@@ -78,12 +75,6 @@ class App extends Component {
 			});
 	};
 
-	handleEditProfile = e => {
-		e.preventDefaut();
-
-		axios.put('')
-	}
-
 	handleLogout = () => {
 		localStorage.clear();
 		this.setState(
@@ -112,7 +103,6 @@ class App extends Component {
 				/>
 
 				<MyRouters isLoggedIn={this.state.isLoggedIn} user={this.state.user} refreshUser={this.refreshUser} />
-				{/* <Route path="*" component={PageNotFound} /> */}
 			</div>
 		);
 	}

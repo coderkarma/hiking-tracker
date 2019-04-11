@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Card, Container, Row, Form } from 'react-bootstrap';
+import { Button, Card, Container, Row, Form, Col } from 'react-bootstrap';
 import './Profile.css';
 class Profile extends Component {
 	state = {
@@ -58,6 +58,9 @@ class Profile extends Component {
 				<div>
 					<h5>Email: {user.email}</h5>
 				</div>
+				<div>
+					<p>DateJoined: {Date().toLocaleString()}</p>
+				</div>
 
 				<Form.Group action="PUT">
 					<input
@@ -72,27 +75,51 @@ class Profile extends Component {
 					</button>
 				</Form.Group>
 
-				<p className="list-trail">List your tails to visit in future!!</p>
+				<p className="list-trail">List your trail to visit in future!!</p>
 
 				<div>
 					{user.trails.map(trail => {
 						if (!trail) {
 							return null;
 						}
-						return (
-							<div key={trail.id}>
-								<Container className="saved-card">
-									<Row>
-										<Card className="profile-card">
-											<img src={trail.imgMedium} alt={trail.name} />
-											<Card.Title>{trail.name}</Card.Title>
 
-											<Card.Text>{trail.summary}</Card.Text>
-											<Button variant="danger" onClick={() => this.deleteTrail(trail.id)}>
-												Remove
-											</Button>
-										</Card>
-									</Row>
+						let savedTrailsCard = (
+							<Col xs={6} md={4} lg={4}>
+								<Card className="profile-card">
+									<Card.Img src={trail.imgMedium} alt={trail.name} />
+									<Card.Body>
+										<Card.Title>{trail.name}</Card.Title>
+
+										<Card.Text>{trail.summary}</Card.Text>
+										<Card.Text>
+											<i className="fas fa-star">{trail.stars}</i>
+										</Card.Text>
+									</Card.Body>
+									<Button variant="danger" onClick={() => this.deleteTrail(trail.id)}>
+										Remove
+									</Button>
+								</Card>
+							</Col>
+						);
+						return (
+							<div className="d-inline-block">
+								{/* <Container className="saved-card"> */}
+								{/* <Row> */}
+								{/* <Col xs={6} md={4} lg={4}>
+									<Card className="profile-card">
+										<img src={trail.imgMedium} alt={trail.name} />
+										<Card.Title>{trail.name}</Card.Title>
+
+										<Card.Text>{trail.summary}</Card.Text>
+										<Button variant="danger" onClick={() => this.deleteTrail(trail.id)}>
+											Remove
+										</Button>
+									</Card>
+								</Col> */}
+								{/* </Row> */}
+								{/* </Container> */}
+								<Container className="searched-trail">
+									<Row>{savedTrailsCard}</Row>
 								</Container>
 							</div>
 						);

@@ -5,6 +5,7 @@ import trail1 from './trail1.jpeg';
 import trail2 from './trail2.jpeg';
 import trail3 from './trail3.jpeg';
 import './Home.css';
+import Footer from '../Footer/Footer'
 
 class Home extends Component {
 	render(props) {
@@ -33,6 +34,7 @@ class Home extends Component {
 					</Carousel.Item>
 				</Carousel>
 				<SearchBar {...this.props} />
+				<Footer />
 			</div>
 		);
 	}

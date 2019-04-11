@@ -90,17 +90,17 @@ class SearchBar extends Component {
 		let trailCards = this.state.location
 			? this.state.location.map((trail, idx) => {
 					return (
-						<Col xs={6} md={4} lg={4} key={idx}>
-							<Card className="api-cards">
+						<Col xs={12} md={4} lg={4} key={idx}>
+							<Card className="api-cards animated slideInUp">
 								<Card.Img
 									variant="top"
 									data-id={trail.id}
 									src={trail.imgMedium}
 									onClick={this.showModel}
+									className="card-image"
 								/>
 								<Card.Body>
 									<Card.Title>{trail.name}</Card.Title>
-									{/* <Card.text>{trail.summary}</Card.text>  */}
 								</Card.Body>
 								<Button onClick={() => this.addTrail(trail)}>Save</Button>
 							</Card>
