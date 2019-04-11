@@ -32,12 +32,6 @@ class Profile extends Component {
 		});
 	};
 
-	//
-	componentDidMount() {
-		let id = this.props.user._id;
-		console.log('this is id that iam looking for', id);
-	}
-
 	// ! Making axios call for edit user's profile
 	editProfileHandle = e => {
 		e.preventDefault();

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import './TrailModel.css';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 class TrailModel extends Component {
 	state = {
@@ -10,23 +11,34 @@ class TrailModel extends Component {
 		newComment: ''
 	};
 
-	saveComment = () => {
-		axios.post('http://localhost:3001/comment', {
+	saveComment = e => {
+		e.preventDefault();
+
+		let decoded = jwt_decode(localStorage.token);
+
+		console.log(decoded);
+
+		let comment = {
 			body: this.state.newComment,
-			userId: localStorage.user_id,
-			trailId: this.trailDetails.id,
+			userId: decoded._id,
+			trailId: this.props.trailDetails.id,
 			dateCreated: ''
-		});
+		};
+
+		console.log(comment);
+
+		axios.post('http://localhost:3001/comment', comment);
 	};
 
-	
-	commentHandleChange = () => {
-		this.setState({
-			lgShow: true,
-			comments: this.state.comments,
-			newComment: this.state.newComment
 
-		})
+	componentDidMount = () => {
+		this.fetchComments();
+	};
+
+	handleChange = e => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
 	};
 
 	fetchComments = () => {
@@ -59,10 +71,8 @@ class TrailModel extends Component {
 					<Modal.Title id="example-modal-sizes-title-lg">Trail Comment Should go here!!</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<form action="POST">
-						<textarea name="comment" id="comment" cols="30" rows="10" />
-						<input type="submit" value="submit" onSubmit={this.props.commentHandleChange} />
-					</form>
+					<textarea id="comment" cols="30" rows="10" name="newComment" onChange={this.handleChange} />
+					<input type="button" value="submit" onClick={this.saveComment} />
 					<Button onClick={() => this.fetchComments()}>Show Comments</Button>
 				</Modal.Body>
 			</Modal>
