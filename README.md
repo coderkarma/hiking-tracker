@@ -1,5 +1,5 @@
 # Hiking Tracker.
- A Hiking Tracker is an app that is built with the idea to find a hiking trail based on location. It was inspired by those beautiful hiking trails and folks who loves to go hike most of their time.
+ A Hiking Tracker is an app that is built with the idea to find a hiking trail based on location. It was inspired by those beautiful hiking trails and folks who have a passion to hike.
  
 Wireframe and planing.
 ![](https://github.com/coderkarma/hiking-tracker/blob/master/Screen%20Shot%202019-04-11%20at%205.48.41%20PM.png)
@@ -25,6 +25,7 @@ Looged in User can logout and be redirected to signin page.
 
 # Challenges and Win 
 Getting trails api and actually making it work was challenging. As application grew managing components and passing props was challenging.
+- React was challenging!!!!!
 
 # Win 
 - Get more fimilarity with database 
@@ -41,4 +42,5 @@ Getting trails api and actually making it work was challenging. As application g
 - Leave a review for the paticular hiking trail.
 
 
-# Thank you Brock, Isha and Dalton for helping out.
+# Thank you Brock, Isha, Dalton for helping out and classmate who being extremely friendly .
+# 
