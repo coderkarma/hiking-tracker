@@ -35,8 +35,8 @@ class TrailModel extends Component {
 		});
 	};
 
-	fetchComments = (e) => {
-		e.preventDefault()
+	fetchComments = e => {
+		e.preventDefault();
 		console.log('in show comments');
 		axios
 			.get(`http://localhost:3001/trails/comments/${this.props.trailDetails.id}`)
@@ -52,11 +52,18 @@ class TrailModel extends Component {
 	};
 
 	render() {
-		console.log(this.state.comments);
-		let comment = this.state.comments? this.state.comments.map(comment => {
-			return (<p>{comment.body}</p>)
-		}) : null
-		
+		// let trailComments = this.state.comments;
+		// trailComments.filter(comment=>{})
+		let comment = this.state.comments
+			? this.state.comments.map(comment => {
+					return (
+						<div>
+							<h1>{comment.body}</h1>
+						</div>
+					);
+				})
+			: null;
+
 		return (
 			<Modal
 				size="lg"
@@ -64,13 +71,12 @@ class TrailModel extends Component {
 				onHide={this.props.hideDetail}
 				aria-labelledby="example-modal-sizes-title-lg"
 			>
-				{/* Here image needs to be stored to display in the modal and comment needs to go here */}
-
+		
 				<Modal.Header closeButton>
-					<Modal.Title id="example-modal-sizes-title-lg">Trail Comment Should go here!!</Modal.Title>
+					<Modal.Title id="example-modal-sizes-title-lg">All comments for this trail</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<textarea id="comment" cols="30" rows="10" name="newComment" onChange={this.handleChange} />
+					<textarea id="comment" cols="10" rows="10" name="newComment" onChange={this.handleChange} />
 					<input type="button" value="submit" onClick={this.saveComment} />
 					<input type="button" value="Show Comments" onClick={this.fetchComments} />
 					{comment}

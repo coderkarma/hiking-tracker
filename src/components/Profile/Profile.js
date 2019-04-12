@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Card, Container, Row, Form, Col } from 'react-bootstrap';
+import { Button, Card, Container, Row, Form, Col, Jumbotron } from 'react-bootstrap';
 import './Profile.css';
 class Profile extends Component {
 	state = {
@@ -54,29 +54,30 @@ class Profile extends Component {
 		const { user } = this.props;
 		return (
 			<div>
-				<h1 className="profile"> Welcome {user.displayname} </h1>
-				<div>
-					<h5>Email: {user.email}</h5>
-				</div>
-				<div>
-					<p>DateJoined: {Date().toLocaleString()}</p>
-				</div>
+				<Jumbotron>
+					<h1 className="profile"> Welcome {user.displayname} </h1>
+					<div>
+						<h5>Email: {user.email}</h5>
+					</div>
+					<div>
+						<p>DateJoined: {Date().toLocaleString()}</p>
+					</div>
 
-				<Form.Group action="PUT">
-					<input
-						type="text"
-						placeholder={user.displayname}
-						onChange={this.onHandleChange}
-						name="displayname"
-					/>
-					<input type="text" placeholder={user.email} onChange={this.onHandleChange} name="email" />
-					<button onClick={this.editProfileHandle} variant="info">
-						Edit
-					</button>
-				</Form.Group>
+					<Form.Group action="PUT">
+						<input
+							type="text"
+							placeholder={user.displayname}
+							onChange={this.onHandleChange}
+							name="displayname"
+						/>
+						<input type="text" placeholder={user.email} onChange={this.onHandleChange} name="email" />
+						<button onClick={this.editProfileHandle} variant="info">
+							Edit
+						</button>
+					</Form.Group>
 
-				<p className="list-trail">List your trail to visit in future!!</p>
-
+					<p className="list-trail">List your hiking trails to visit in future!!</p>
+				</Jumbotron>
 				<div>
 					{user.trails.map(trail => {
 						if (!trail) {
