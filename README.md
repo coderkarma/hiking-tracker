@@ -2,7 +2,7 @@
  A Hiking Tracker is an app that is built with the idea to find a hiking trail based on location. A user can create an account. A user needs to login in order to  save the hiking trails and user can delete the trails if they want. User can edit their username and email.
  
 Wireframe and planing.
-
+![](https://github.com/coderkarma/hiking-tracker/blob/master/Screen%20Shot%202019-04-11%20at%205.48.41%20PM.png)
 
 #Technologies used
 Front-end : React, HTML, CSS
