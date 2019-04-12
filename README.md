@@ -1,14 +1,44 @@
 # Hiking Tracker.
- A Hiking Tracker is an app that is built with the idea to find a hiking trail based on location. A user can create an account. A user needs to login in order to  save the hiking trails and user can delete the trails if they want. User can edit their username and email.
+ A Hiking Tracker is an app that is built with the idea to find a hiking trail based on location. It was inspired by those beautiful hiking trails and folks who loves to go hike most of their time.
  
 Wireframe and planing.
 ![](https://github.com/coderkarma/hiking-tracker/blob/master/Screen%20Shot%202019-04-11%20at%205.48.41%20PM.png)
+![]()
 
-#Technologies used
+
+
+# Technologies used
 Front-end : React, HTML, CSS
 Library: React Materialize UI/ React Boostrap.
 Backend : NodeJs, Express, Mongoose and Jwt
 
 
+# User Story 
+
+User can visit / to see a landing page
+User can Login or Register
+User can save hiking trails once they logged in.
+Logged in User will be directed to a profile page.
+Logged in User can edit/update the profile information.
+Looged in User can logout and be redirected to signin page.
+
+
 # Challenges and Win 
-Getting trails based on location was challenging initially, I was trying to figure it out how to implement that and have been making frequent request to that api. I have been blocked when I made 18 api request. I had to put method of payment information to get more api request. I have to grab the location of user with latitude and lagitutude with geocode api from googlemaps. On top of that I had to do another hiking trail api call to grab trails.
+Getting trails api and actually making it work was challenging. As application grew managing components and passing props was challenging.
+
+# Win 
+- Get more fimilarity with database 
+- Mongose was actually fun to work with.
+- More fimilarity with React.
+
+# Future Features
+- Create own hiking 
+- Add a googlemap  hiking routes and trails
+- User to upload their profile image
+- Ability to  upload their hiking trails images in user account
+- Edit User comment
+- Create a community public forum to chat about different hiking trails
+- Leave a review for the paticular hiking trail.
+
+
+# Thank you Brock, Isha and Dalton for helping out.
