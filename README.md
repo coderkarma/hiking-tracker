@@ -33,7 +33,7 @@ Getting trails api and actually making it work was challenging. As application g
 - More fimilarity with React.
 
 # Future Features
-- Create own hiking 
+- Create hiking database 
 - Add a googlemap  hiking routes and trails
 - User to upload their profile image
 - Ability to  upload their hiking trails images in user account
@@ -42,5 +42,5 @@ Getting trails api and actually making it work was challenging. As application g
 - Leave a review for the paticular hiking trail.
 
 
-# Thank you Brock, Isha, Dalton for helping out and classmate who being extremely friendly .
+# Thank you Brock, Isha, Dalton for helping me out and classmate who being extremely friendly and helpful.
 # 
