@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal} from 'react-bootstrap';
 import './TrailModel.css';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';

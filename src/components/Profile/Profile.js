@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Button, Card, Container, Row, Form, Col, Jumbotron } from 'react-bootstrap';
 import './Profile.css';
+import { Animated } from 'react-animated-css';
 class Profile extends Component {
 	state = {
 		displayname: '',
@@ -55,7 +56,10 @@ class Profile extends Component {
 		return (
 			<div>
 				<Jumbotron>
-					<h1 className="profile"> Welcome {user.displayname} </h1>
+					<Animated animationIn="bounceInRight" animationOut="fadeOut" isVisible={true}>
+						<h1 className="profile animated"> Welcome {user.displayname} </h1>
+					</Animated>
+
 					<div>
 						<h5>Email: {user.email}</h5>
 					</div>

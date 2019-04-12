@@ -4,6 +4,7 @@ import { Button, Dialog, DialogActions, DialogTitle, DialogContent } from '@mate
 // import { Form } from 'react-bootstrap';
 
 function LoginForm(props) {
+	// console.log( "error message is here", props.errorMessage)
 	return (
 		<div>
 			<form>
@@ -13,6 +14,7 @@ function LoginForm(props) {
 				<Button onClick={props.handleSubmit}>Login </Button>
 				{/* <Redirect to="/profile" /> */}
 			</form>
+			{props.errorMessage === false ? null : <p>incorrect password/email</p>}
 		</div>
 	);
 }
@@ -25,7 +27,8 @@ function SignUpForm(props) {
 				<input type="password" name="signuppassword" placeholder="password" onChange={props.handleChange} />
 
 				<Button onClick={props.handleSubmit}>Submit</Button>
-				{/* <Redirect to="/profile" /> */}
+				{props.errorMessage === false ? null : <p>User already exists!</p>}
+			
 			</form>
 		</div>
 	);
@@ -39,7 +42,8 @@ class LoginSignUp extends Component {
 		loginpassword: null,
 		signuppassword: null,
 		loginemail: null,
-		signupemail: null
+		signupemail: null,
+		errorMessage: false
 	};
 
 	showModel = type => {
@@ -72,12 +76,18 @@ class LoginSignUp extends Component {
 					email: ths.state.loginemail,
 					password: ths.state.loginpassword
 				})
-				.then(response => {
-					localStorage.setItem('token', response.data.signedJwt);
-					// console.log('response', response);
-
-					ths.props.handleLogin(response.data.user);
-				})
+				.then(
+					response => {
+						localStorage.setItem('token', response.data.signedJwt);
+						// console.log('response', response);
+						ths.props.handleLogin(response.data.user);
+					},
+					err => {
+						this.setState({
+							errorMessage: true
+						});
+					}
+				)
 				.catch(err => console.log(err));
 		} else if (ths.state.type === 'signup') {
 			axios
@@ -86,13 +96,17 @@ class LoginSignUp extends Component {
 					password: this.state.signuppassword,
 					displayname: this.state.displayname
 				})
-				.then(response => {
-					localStorage.token = response.data.signedJwt;
-
-					console.log('response is here *****', response.data.user);
-					// try passing user into handleLogin
-				  ths.props.handleLogin(response.data.user);
-				})
+				.then(
+					response => {
+						localStorage.token = response.data.signedJwt;
+						ths.props.handleLogin(response.data.user);
+					},
+					err => {
+						this.setState({
+							errorMessage: true
+						});
+					}
+				)
 				.catch(err => console.log(err));
 		}
 	};
@@ -100,9 +114,13 @@ class LoginSignUp extends Component {
 	render() {
 		const FormsFront =
 			this.state.type === 'login' ? (
-				<LoginForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+				<LoginForm
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+					errorMessage={this.state.errorMessage}
+				/>
 			) : (
-				<SignUpForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+				<SignUpForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} errorMessage={this.state.errorMessage} />
 			);
 		return (
 			<div>
@@ -113,9 +131,7 @@ class LoginSignUp extends Component {
 					SignUp
 				</Button>
 				<Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
-					<DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-						Modal title
-					</DialogTitle>
+					<DialogTitle id="customized-dialog-title" onClose={this.handleClose} />
 					<DialogContent>{FormsFront}</DialogContent>
 					<DialogActions>
 						<button onClick={this.handleClose} color="primary">

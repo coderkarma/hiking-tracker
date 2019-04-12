@@ -6,6 +6,7 @@ import trail2 from './trail2.jpeg';
 import trail3 from './trail3.jpeg';
 import './Home.css';
 import Footer from '../Footer/Footer';
+import { Animated } from 'react-animated-css';
 
 class Home extends Component {
 	render(props) {
@@ -16,21 +17,25 @@ class Home extends Component {
 						<Carousel.Item className="carousel-images">
 							<img className="d-block w-100" src={trail1} alt="First slide" />
 							<Carousel.Caption>
-								<h3>Find trails based on your location</h3>
+								<Animated animationIn="bounceInLeft" animationOut="fadeOut" isVisible={true}>
+									<h3 className="animated fadeInBigLeft">Find trails based on your location</h3>
+								</Animated>
 							</Carousel.Caption>
 						</Carousel.Item>
 						<Carousel.Item>
 							<img className="d-block w-100" src={trail2} alt="Third slide" />
 
 							<Carousel.Caption>
-								<h3>Explore Hiking Trails</h3>
+								<h3 className="animated fadeInBigLeft">Explore Hiking Trails</h3>
 							</Carousel.Caption>
 						</Carousel.Item>
 						<Carousel.Item>
-							<img className="d-block w-100" src={trail3} alt="Third slide" />
+							<img className="d-block w-100 " src={trail3} alt="Third slide" />
 
 							<Carousel.Caption>
-								<h3>Save Your Favorite Hiking Trails To Your Profile</h3>
+								<h3 className="animated fadeInBigLeft">
+									Save Your Favorite Hiking Trails To Your Profile
+								</h3>
 							</Carousel.Caption>
 						</Carousel.Item>
 					</Carousel>
