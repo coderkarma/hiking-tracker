@@ -27,6 +27,7 @@ Looged in User can logout and be redirected to signin page.
 # Challenges and Win 
 Getting trails api and actually making it work was challenging. As application grew managing components and passing props was challenging.
 - React was challenging!!!!!
+- Commenting on each trail.
 
 # Win 
 - Get more fimilarity with database 
