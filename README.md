@@ -42,5 +42,5 @@ Getting trails api and actually making it work was challenging. As application g
 - Leave a review for the paticular hiking trail.
 
 
-# Thank you Brock, Isha, Dalton for helping me out and classmate who being extremely friendly and helpful.
+Thank you Brock, Isha, Dalton for helping me out and classmate who being extremely friendly and helpful.
 # 
