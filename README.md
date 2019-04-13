@@ -1,68 +1,49 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Hiking Tracker.
+ A Hiking Tracker is an app that is built with the idea to find a hiking trail based on location. It was inspired by those beautiful hiking trails and folks who have a passion to hike.
+ 
+Wireframe and planing.
+![](https://github.com/coderkarma/hiking-tracker/blob/master/Screen%20Shot%202019-04-11%20at%205.48.41%20PM.png)
+![](https://github.com/coderkarma/hiking-tracker/blob/master/wireframe2.png)
+![](https://github.com/coderkarma/hiking-tracker/blob/master/wireframe2.png)
 
-## Available Scripts
 
-In the project directory, you can run:
 
-### `npm start`
+# Technologies used
+Front-end : React, HTML, CSS
+Library: React Materialize UI/ React Boostrap.
+Backend : NodeJs, Express, Mongoose and Jwt
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+# User Story 
 
-### `npm test`
+User can visit / to see a landing page
+User can Login or Register
+User can save hiking trails once they logged in.
+Logged in User will be directed to a profile page.
+Logged in User can edit/update the profile information.
+Looged in User can logout and be redirected to signin page.
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+# Challenges and Win 
+Getting trails api and actually making it work was challenging. As application grew managing components and passing props was challenging.
+- React was challenging!!!!!
+- Commenting on each trail.
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Win 
+- Get more fimilarity with database 
+- Mongose was actually fun to work with.
+- More fimilarity with React.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# Future Features
+- Create hiking database 
+- Add a googlemap  hiking routes and trails
+- User to upload their profile image
+- Ability to  upload their hiking trails images in user account
+- Edit User comment
+- Create a community public forum to chat about different hiking trails
+- Leave a review for the paticular hiking trail.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Thank you Brock, Isha, Dalton for helping me out and classmates who being extremely friendly and helpful during this 12 week.
+I didn't just learned coding, I have made lifelong friends!!! YES!!
+# 
