@@ -6,6 +6,9 @@ Wireframe and planing.
 ![](https://github.com/coderkarma/hiking-tracker/blob/master/wireframe2.png)
 ![](https://github.com/coderkarma/hiking-tracker/blob/master/wireframe2.png)
 
+# Screen shots
+
+![](https://github.com/coderkarma/hiking-tracker/blob/master/Screen%20Shot%202019-04-11%20at%205.48.41%20PM.png)
 
 
 # Technologies used
