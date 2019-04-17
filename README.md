@@ -45,4 +45,4 @@ Getting trails api and actually making it work was challenging. As application g
 - Edit User comment
 - Create a community public forum to chat about different hiking trails
 - Leave a review for the paticular hiking trail.
-
+- deployment 
