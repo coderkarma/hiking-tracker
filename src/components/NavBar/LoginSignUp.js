@@ -28,7 +28,6 @@ function SignUpForm(props) {
 
 				<Button onClick={props.handleSubmit}>Submit</Button>
 				{props.errorMessage === false ? null : <p>User already exists!</p>}
-			
 			</form>
 		</div>
 	);
@@ -120,7 +119,11 @@ class LoginSignUp extends Component {
 					errorMessage={this.state.errorMessage}
 				/>
 			) : (
-				<SignUpForm handleChange={this.handleChange} handleSubmit={this.handleSubmit} errorMessage={this.state.errorMessage} />
+				<SignUpForm
+					handleChange={this.handleChange}
+					handleSubmit={this.handleSubmit}
+					errorMessage={this.state.errorMessage}
+				/>
 			);
 		return (
 			<div>
