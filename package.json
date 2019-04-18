@@ -18,15 +18,13 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
-    "react-slideshow-image": "^1.1.5",
-    "serve-favicon": "^2.5.0"
+    "react-slideshow-image": "^1.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "heroku-postbuild": "npm run build"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,7 +35,6 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "proxy": "http://localhost:3001",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "index.js",
   "devDependencies": {},
