@@ -62,7 +62,7 @@ class App extends Component {
 			return;
 		}
 		axios
-			.get('http://localhost:3001/users/profile', {
+			.get('http://localhost:3000/users/profile', {
 				headers: {
 					'x-token': token
 				}

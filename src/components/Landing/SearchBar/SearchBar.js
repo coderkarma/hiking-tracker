@@ -25,7 +25,7 @@ class SearchBar extends Component {
 	showModel = e => {
 		let trailsId = e.target.dataset.id;
 		axios
-			.get(`http://localhost:3001/trails/details/ ${trailsId}`)
+			.get(`http://localhost:3000/trails/details/ ${trailsId}`)
 			.then(response => {
 				console.log(response.data.trails);
 				this.setState({
@@ -45,9 +45,13 @@ class SearchBar extends Component {
 	getLocation = e => {
 		// remove white space and add plus for t
 		let address = this.state.value.replace(/\s/g, '+');
-		let url = `http://localhost:3001/trails/geolocation/${address}`;
+		let url = `http://localhost:3000/trails/geolocation/${address}`;
 		console.log(url);
-		let promise = fetch(url).then(response => response.json());
+		let promise = fetch(url)
+			.then(response => response.json())
+			.catch(err => {
+				console.log('error occured', err);
+			});
 		return promise;
 	};
 
@@ -72,7 +76,7 @@ class SearchBar extends Component {
 		}
 		axios
 			.post(
-				'http://localhost:3001/trails/add',
+				'http://localhost:3000/trails/add',
 				{ trail },
 				{
 					headers: {

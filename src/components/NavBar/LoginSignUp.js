@@ -71,7 +71,7 @@ class LoginSignUp extends Component {
 		const ths = this;
 		if (ths.state.type === 'login') {
 			axios
-				.post('http://localhost:3001/users/login', {
+				.post('http://localhost:3000/users/login', {
 					email: ths.state.loginemail,
 					password: ths.state.loginpassword
 				})
@@ -90,7 +90,7 @@ class LoginSignUp extends Component {
 				.catch(err => console.log(err));
 		} else if (ths.state.type === 'signup') {
 			axios
-				.post('http://localhost:3001/users/signup', {
+				.post('http://localhost:3000/users/signup', {
 					email: this.state.signupemail,
 					password: this.state.signuppassword,
 					displayname: this.state.displayname

@@ -16,7 +16,7 @@ class Profile extends Component {
 	deleteTrail = id => {
 		const token = localStorage.getItem('token');
 		axios
-			.delete(`http://localhost:3001/trails/remove/${id}`, {
+			.delete(`http://localhost:3000/trails/remove/${id}`, {
 				headers: {
 					'x-token': token
 				}
@@ -46,7 +46,7 @@ class Profile extends Component {
 			updateData['email'] = this.state.email;
 		}
 		console.log(updateData);
-		axios.put(`http://localhost:3001/users/${id}`, updateData).then(() => {
+		axios.put(`http://localhost:3000/users/${id}`, updateData).then(() => {
 			this.props.refreshUser();
 		});
 	};
@@ -108,21 +108,6 @@ class Profile extends Component {
 						);
 						return (
 							<div className="d-inline-block">
-								{/* <Container className="saved-card"> */}
-								{/* <Row> */}
-								{/* <Col xs={6} md={4} lg={4}>
-									<Card className="profile-card">
-										<img src={trail.imgMedium} alt={trail.name} />
-										<Card.Title>{trail.name}</Card.Title>
-
-										<Card.Text>{trail.summary}</Card.Text>
-										<Button variant="danger" onClick={() => this.deleteTrail(trail.id)}>
-											Remove
-										</Button>
-									</Card>
-								</Col> */}
-								{/* </Row> */}
-								{/* </Container> */}
 								<Container className="searched-trail">
 									<Row>{savedTrailsCard}</Row>
 								</Container>

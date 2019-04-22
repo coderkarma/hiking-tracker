@@ -26,7 +26,7 @@ class TrailModel extends Component {
 
 		console.log(comment);
 
-		axios.post('http://localhost:3001/comment', comment);
+		axios.post('http://localhost:3000/comment', comment);
 	};
 
 	handleChange = e => {
@@ -39,7 +39,7 @@ class TrailModel extends Component {
 		e.preventDefault();
 		console.log('in show comments');
 		axios
-			.get(`http://localhost:3001/trails/comments/${this.props.trailDetails.id}`)
+			.get(`http://localhost:3000/trails/comments/${this.props.trailDetails.id}`)
 			.then(response => {
 				console.log(response);
 				this.setState({
