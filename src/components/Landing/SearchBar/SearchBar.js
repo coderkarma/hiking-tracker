@@ -3,6 +3,7 @@ import { Row, Card, Col, Container, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import TrailModel from '../TrailModel';
 import './SearchBar.css';
+// import '../../../../env.json';
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
@@ -24,6 +25,7 @@ class SearchBar extends Component {
 
 	showModel = e => {
 		let trailsId = e.target.dataset.id;
+
 		axios
 			.get(`http://localhost:3000/trails/details/ ${trailsId}`)
 			.then(response => {
@@ -43,9 +45,16 @@ class SearchBar extends Component {
 		});
 	};
 	getLocation = e => {
+		let actualHostName = window.location.hostname;
+		let apiUrl = "http://localhost:3000"
+
+		if(actualHostName !== "localhost"){
+			apiUrl = 'https://agile-fjord-52758.herokuapp.com'
+		}
+
 		// remove white space and add plus for t
 		let address = this.state.value.replace(/\s/g, '+');
-		let url = `http://localhost:3000/trails/geolocation/${address}`;
+		let url = `${apiUrl}/trails/geolocation/${address}`;
 		console.log(url);
 		let promise = fetch(url)
 			.then(response => response.json())
