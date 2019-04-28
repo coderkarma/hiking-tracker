@@ -3,7 +3,8 @@ import { Row, Card, Col, Container, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import TrailModel from '../TrailModel';
 import './SearchBar.css';
-// import '../../../../env.json';
+
+import env from '../../../env.json';
 class SearchBar extends Component {
 	constructor(props) {
 		super(props);
@@ -14,6 +15,14 @@ class SearchBar extends Component {
 			trailsDetailModel: false,
 			selectedTrailsDetail: ''
 		};
+
+		console.log(env);
+		let actualHostName = window.location.hostname;
+		let apiUrl = env.dev.host;
+
+		if (actualHostName !== 'localhost') {
+			apiUrl = env.prod.host;
+		}
 	}
 
 	handleChange = event => {
@@ -25,9 +34,15 @@ class SearchBar extends Component {
 
 	showModel = e => {
 		let trailsId = e.target.dataset.id;
+		let actualHostName = window.location.hostname;
+		let apiUrl = 'http://localhost:3000';
+
+		if (actualHostName !== 'localhost') {
+			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+		}
 
 		axios
-			.get(`http://localhost:3000/trails/details/ ${trailsId}`)
+			.get(`${apiUrl}/trails/details/ ${trailsId}`)
 			.then(response => {
 				console.log(response.data.trails);
 				this.setState({
@@ -46,10 +61,10 @@ class SearchBar extends Component {
 	};
 	getLocation = e => {
 		let actualHostName = window.location.hostname;
-		let apiUrl = "http://localhost:3000"
+		let apiUrl = 'http://localhost:3000';
 
-		if(actualHostName !== "localhost"){
-			apiUrl = 'https://agile-fjord-52758.herokuapp.com'
+		if (actualHostName !== 'localhost') {
+			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
 		}
 
 		// remove white space and add plus for t
