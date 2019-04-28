@@ -98,9 +98,16 @@ class SearchBar extends Component {
 			// Handle if the user is not logged in
 			return;
 		}
+
+		let actualHostName = window.location.hostname;
+		let apiUrl = 'http://localhost:3000';
+
+		if (actualHostName !== 'localhost') {
+			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+		}
 		axios
 			.post(
-				'http://localhost:3000/trails/add',
+				`${apiUrl}/trails/add`,
 				{ trail },
 				{
 					headers: {
