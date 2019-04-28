@@ -69,9 +69,13 @@ class LoginSignUp extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const ths = this;
-		// let trailsId = e.target.dataset.id;
-		// let actualHostName = window.location.hostname;
+		let trailsId = e.target.dataset.id;
+		let actualHostName = window.location.hostname;
 		let apiUrl = 'http://localhost:3000';
+
+		if (actualHostName !== 'localhost') {
+			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+		}
 
 		if (ths.state.type === 'login') {
 			axios
@@ -93,6 +97,12 @@ class LoginSignUp extends Component {
 				)
 				.catch(err => console.log(err));
 		} else if (ths.state.type === 'signup') {
+			let actualHostName = window.location.hostname;
+			let apiUrl = 'http://localhost:3000';
+
+			if (actualHostName !== 'localhost') {
+				apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+			}
 			axios
 				.post(`${apiUrl}/users/signup`, {
 					email: this.state.signupemail,
