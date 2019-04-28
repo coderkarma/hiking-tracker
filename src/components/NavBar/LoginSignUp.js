@@ -69,9 +69,13 @@ class LoginSignUp extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const ths = this;
+		// let trailsId = e.target.dataset.id;
+		// let actualHostName = window.location.hostname;
+		let apiUrl = 'http://localhost:3000';
+
 		if (ths.state.type === 'login') {
 			axios
-				.post('http://localhost:3000/users/login', {
+				.post(`${apiUrl}/users/login`, {
 					email: ths.state.loginemail,
 					password: ths.state.loginpassword
 				})
@@ -90,7 +94,7 @@ class LoginSignUp extends Component {
 				.catch(err => console.log(err));
 		} else if (ths.state.type === 'signup') {
 			axios
-				.post('http://localhost:3000/users/signup', {
+				.post(`${apiUrl}/users/signup`, {
 					email: this.state.signupemail,
 					password: this.state.signuppassword,
 					displayname: this.state.displayname
