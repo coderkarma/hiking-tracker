@@ -14,8 +14,25 @@ function MyRouters(props) {
 	if (props.isLoggedIn) {
 		return (
 			<Switch>
-				<Route exact path="/" render={() => <Home user={props.user} refreshUser={props.refreshUser} />} />
-				<Route path="/profile" render={() => <Profile user={props.user} refreshUser={props.refreshUser} />} />
+				<Route
+					exact
+					path='/'
+					render={() => (
+						<Home
+							user={props.user}
+							refreshUser={props.refreshUser}
+						/>
+					)}
+				/>
+				<Route
+					path='/profile'
+					render={() => (
+						<Profile
+							user={props.user}
+							refreshUser={props.refreshUser}
+						/>
+					)}
+				/>
 
 				{/* <Route path="*" component={PageNotFound} />  */}
 			</Switch>
@@ -23,17 +40,26 @@ function MyRouters(props) {
 	} else {
 		return (
 			<Switch>
-				<Redirect from="/profile" to="/" />
-				<Route exact path="/" render={() => <Home user={props.user} refreshUser={props.refreshUser} />} />
+				<Redirect from='/profile' to='/' />
+				<Route
+					exact
+					path='/'
+					render={() => (
+						<Home
+							user={props.user}
+							refreshUser={props.refreshUser}
+						/>
+					)}
+				/>
 			</Switch>
 		);
 	}
 }
 class App extends Component {
 	state = {
-		isLoggedIn: false,
-		loadingUser: true,
-		user: null
+		isLoggedIn  : false,
+		loadingUser : true,
+		user        : null
 	};
 
 	componentDidMount() {
@@ -43,7 +69,7 @@ class App extends Component {
 	handleLogin = user => {
 		this.setState(
 			{
-				isLoggedIn: true,
+				isLoggedIn : true,
 				user
 			},
 			() => {
@@ -56,19 +82,30 @@ class App extends Component {
 		const token = localStorage.getItem('token');
 		if (!token) {
 			this.setState({
-				user: null,
-				loadingUser: false
+				user        : null,
+				loadingUser : false
 			});
 			return;
 		}
+		let actualHostName = window.location.hostname;
+		let apiUrl = 'http://localhost:3000';
+
+		if (actualHostName !== 'localhost') {
+			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+		}
+
 		axios
-			.get('http://localhost:3000/users/profile', {
-				headers: {
-					'x-token': token
+			.get(`${apiUrl}/users/profile`, {
+				headers : {
+					'x-token' : token
 				}
 			})
 			.then(res => {
-				this.setState({ user: res.data, loadingUser: false, isLoggedIn: true });
+				this.setState({
+					user: res.data,
+					loadingUser: false,
+					isLoggedIn: true
+				});
 			})
 			.catch(() => {
 				this.handleLogout();
@@ -79,9 +116,9 @@ class App extends Component {
 		localStorage.clear();
 		this.setState(
 			{
-				isLoggedIn: false,
-				user: null,
-				loadingUser: false
+				isLoggedIn  : false,
+				user        : null,
+				loadingUser : false
 			},
 			() => {
 				this.props.history.push('/');
@@ -90,19 +127,22 @@ class App extends Component {
 	};
 
 	render() {
-
 		if (this.state.loadingUser) {
 			return null;
 		}
 		return (
-			<div className="App">
+			<div className='App'>
 				<NavBar
 					handleLogout={this.handleLogout}
 					isLoggedIn={this.state.isLoggedIn}
 					handleLogin={this.handleLogin}
 				/>
 
-				<MyRouters isLoggedIn={this.state.isLoggedIn} user={this.state.user} refreshUser={this.refreshUser} />
+				<MyRouters
+					isLoggedIn={this.state.isLoggedIn}
+					user={this.state.user}
+					refreshUser={this.refreshUser}
+				/>
 			</div>
 		);
 	}

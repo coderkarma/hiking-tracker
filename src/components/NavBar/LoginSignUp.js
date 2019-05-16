@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Dialog, DialogActions, DialogTitle, DialogContent } from '@material-ui/core';
+import {
+	Button,
+	Dialog,
+	DialogActions,
+	DialogTitle,
+	DialogContent
+} from '@material-ui/core';
 // import { Form } from 'react-bootstrap';
 
 function LoginForm(props) {
@@ -8,13 +14,25 @@ function LoginForm(props) {
 	return (
 		<div>
 			<form>
-				<input type="email" name="loginemail" placeholder="email" onChange={props.handleChange} />
-				<input type="password" name="loginpassword" placeholder="password" onChange={props.handleChange} />
+				<input
+					type='email'
+					name='loginemail'
+					placeholder='email'
+					onChange={props.handleChange}
+				/>
+				<input
+					type='password'
+					name='loginpassword'
+					placeholder='password'
+					onChange={props.handleChange}
+				/>
 
 				<Button onClick={props.handleSubmit}>Login </Button>
 				{/* <Redirect to="/profile" /> */}
 			</form>
-			{props.errorMessage === false ? null : <p>incorrect password/email</p>}
+			{props.errorMessage === false ? null : (
+				<p>incorrect password/email</p>
+			)}
 		</div>
 	);
 }
@@ -22,12 +40,29 @@ function SignUpForm(props) {
 	return (
 		<div>
 			<form>
-				<input type="text" name="displayname" placeholder="Display Name" onChange={props.handleChange} />
-				<input type="email" name="signupemail" placeholder="email" onChange={props.handleChange} />
-				<input type="password" name="signuppassword" placeholder="password" onChange={props.handleChange} />
+				<input
+					type='text'
+					name='displayname'
+					placeholder='Display Name'
+					onChange={props.handleChange}
+				/>
+				<input
+					type='email'
+					name='signupemail'
+					placeholder='email'
+					onChange={props.handleChange}
+				/>
+				<input
+					type='password'
+					name='signuppassword'
+					placeholder='password'
+					onChange={props.handleChange}
+				/>
 
 				<Button onClick={props.handleSubmit}>Submit</Button>
-				{props.errorMessage === false ? null : <p>User already exists!</p>}
+				{props.errorMessage === false ? null : (
+					<p>User already exists!</p>
+				)}
 			</form>
 		</div>
 	);
@@ -35,26 +70,26 @@ function SignUpForm(props) {
 
 class LoginSignUp extends Component {
 	state = {
-		type: null,
-		open: false,
-		displayname: null,
-		loginpassword: null,
-		signuppassword: null,
-		loginemail: null,
-		signupemail: null,
-		errorMessage: false
+		type           : null,
+		open           : false,
+		displayname    : null,
+		loginpassword  : null,
+		signuppassword : null,
+		loginemail     : null,
+		signupemail    : null,
+		errorMessage   : false
 	};
 
 	showModel = type => {
 		this.setState({
-			type: type,
-			open: true
+			type : type,
+			open : true
 		});
 	};
 	handleClose = () => {
 		this.setState({
-			type: null,
-			open: false
+			type : null,
+			open : false
 		});
 	};
 
@@ -80,8 +115,8 @@ class LoginSignUp extends Component {
 		if (ths.state.type === 'login') {
 			axios
 				.post(`${apiUrl}/users/login`, {
-					email: ths.state.loginemail,
-					password: ths.state.loginpassword
+					email    : ths.state.loginemail,
+					password : ths.state.loginpassword
 				})
 				.then(
 					response => {
@@ -91,7 +126,7 @@ class LoginSignUp extends Component {
 					},
 					err => {
 						this.setState({
-							errorMessage: true
+							errorMessage : true
 						});
 					}
 				)
@@ -105,9 +140,9 @@ class LoginSignUp extends Component {
 			}
 			axios
 				.post(`${apiUrl}/users/signup`, {
-					email: this.state.signupemail,
-					password: this.state.signuppassword,
-					displayname: this.state.displayname
+					email       : this.state.signupemail,
+					password    : this.state.signuppassword,
+					displayname : this.state.displayname
 				})
 				.then(
 					response => {
@@ -116,7 +151,7 @@ class LoginSignUp extends Component {
 					},
 					err => {
 						this.setState({
-							errorMessage: true
+							errorMessage : true
 						});
 					}
 				)
@@ -141,17 +176,24 @@ class LoginSignUp extends Component {
 			);
 		return (
 			<div>
-				<Button onClick={e => this.showModel('login')} color="inherit">
+				<Button onClick={e => this.showModel('login')} color='inherit'>
 					Login
 				</Button>
-				<Button onClick={e => this.showModel('signup')} color="inherit">
+				<Button onClick={e => this.showModel('signup')} color='inherit'>
 					SignUp
 				</Button>
-				<Dialog onClose={this.handleClose} aria-labelledby="customized-dialog-title" open={this.state.open}>
-					<DialogTitle id="customized-dialog-title" onClose={this.handleClose} />
+				<Dialog
+					onClose={this.handleClose}
+					aria-labelledby='customized-dialog-title'
+					open={this.state.open}
+				>
+					<DialogTitle
+						id='customized-dialog-title'
+						onClose={this.handleClose}
+					/>
 					<DialogContent>{FormsFront}</DialogContent>
 					<DialogActions>
-						<button onClick={this.handleClose} color="primary">
+						<button onClick={this.handleClose} color='primary'>
 							Close
 						</button>
 					</DialogActions>

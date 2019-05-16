@@ -14,15 +14,15 @@ import ProfileLogout from './ProfileLogout';
 import LoginSignUp from './LoginSignUp';
 
 const styles = {
-	root: {
-		flexGrow: 1
+	root       : {
+		flexGrow : 1
 	},
-	grow: {
-		flexGrow: 1
+	grow       : {
+		flexGrow : 1
 	},
-	menuButton: {
-		marginLeft: -12,
-		marginRight: 20
+	menuButton : {
+		marginLeft  : -12,
+		marginRight : 20
 	}
 };
 
@@ -36,12 +36,21 @@ function NavBar(props) {
 	);
 	return (
 		<div className={classes.root}>
-			<AppBar position="fixed">
+			<AppBar position='fixed'>
 				<Toolbar>
-					<IconButton className={classes.menuButton} color="inherit" aria-label="Menu" />
-					<Typography variant="h6" color="inherit" className={classes.grow}>
-						<Link to="/" className="link">
-							<span className="animated fadeInLeft">Hiking</span> <i className="fas fa-hiking" /> Tracker
+					<IconButton
+						className={classes.menuButton}
+						color='inherit'
+						aria-label='Menu'
+					/>
+					<Typography
+						variant='h6'
+						color='inherit'
+						className={classes.grow}
+					>
+						<Link to='/' className='link'>
+							<span className='animated fadeInLeft'>Hiking</span>
+							<i className='fas fa-hiking' /> Tracker
 						</Link>
 					</Typography>
 					{NavButtons}
@@ -51,7 +60,7 @@ function NavBar(props) {
 	);
 }
 NavBar.propTypes = {
-	classes: PropTypes.object.isRequired
+	classes : PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(NavBar);

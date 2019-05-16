@@ -4,31 +4,31 @@ import axios from 'axios';
 import TrailModel from '../TrailModel';
 import './SearchBar.css';
 
-import env from '../../../env.json';
+// import env from '../../../env.json';
 class SearchBar extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			value: '',
-			location: '',
-			trailId: '',
-			trailsDetailModel: false,
-			selectedTrailsDetail: ''
-		};
+	// constructor(props) {
+	// 	super(props);
+	state = {
+		value                : '',
+		location             : '',
+		trailId              : '',
+		trailsDetailModel    : false,
+		selectedTrailsDetail : ''
+	};
 
-		console.log(env);
-		let actualHostName = window.location.hostname;
-		let apiUrl = env.dev.host;
+	// console.log(env);
+	// let actualHostName = window.location.hostname;
+	// let apiUrl = env.dev.host;
 
-		if (actualHostName !== 'localhost') {
-			apiUrl = env.prod.host;
-		}
-	}
+	// if (actualHostName !== 'localhost') {
+	// 	apiUrl = env.prod.host;
+	// }
+	// }
 
 	handleChange = event => {
 		event.preventDefault();
 		this.setState({
-			value: event.target.value
+			value : event.target.value
 		});
 	};
 
@@ -46,8 +46,8 @@ class SearchBar extends Component {
 			.then(response => {
 				console.log(response.data.trails);
 				this.setState({
-					trailsDetailModel: true,
-					selectedTrailsDetail: response.data.trails[0]
+					trailsDetailModel    : true,
+					selectedTrailsDetail : response.data.trails[0]
 				});
 			})
 			.catch(err => {
@@ -56,7 +56,7 @@ class SearchBar extends Component {
 	};
 	hideModel = e => {
 		this.setState({
-			trailsDetailModel: false
+			trailsDetailModel : false
 		});
 	};
 	getLocation = e => {
@@ -84,7 +84,7 @@ class SearchBar extends Component {
 		this.getLocation().then(location => {
 			console.log(location);
 			this.setState({
-				location: location.trails
+				location : location.trails
 			});
 			// console.log('you are here:', this.state.location[0].imgMedium);
 		});
@@ -110,8 +110,8 @@ class SearchBar extends Component {
 				`${apiUrl}/trails/add`,
 				{ trail },
 				{
-					headers: {
-						'x-token': token
+					headers : {
+						'x-token' : token
 					}
 				}
 			)
@@ -126,18 +126,20 @@ class SearchBar extends Component {
 			? this.state.location.map((trail, idx) => {
 					return (
 						<Col xs={12} md={4} lg={4} key={idx}>
-							<Card className="api-cards animated slideInUp">
+							<Card className='api-cards animated slideInUp'>
 								<Card.Img
-									variant="top"
+									variant='top'
 									data-id={trail.id}
 									src={trail.imgMedium}
 									onClick={this.showModel}
-									className="card-image"
+									className='card-image'
 								/>
 								<Card.Body>
 									<Card.Title>{trail.name}</Card.Title>
 								</Card.Body>
-								<Button onClick={() => this.addTrail(trail)}>Save</Button>
+								<Button onClick={() => this.addTrail(trail)}>
+									Save
+								</Button>
 							</Card>
 						</Col>
 					);
@@ -146,12 +148,12 @@ class SearchBar extends Component {
 
 		return (
 			<div>
-				<Form className="py-3" onSubmit={this.handleSubmit}>
+				<Form className='py-3' onSubmit={this.handleSubmit}>
 					<input
-						type="text"
+						type='text'
 						value={this.state.value}
 						onChange={this.handleChange}
-						placeholder="Search Trails by City"
+						placeholder='Search Trails by City'
 					/>
 				</Form>
 				<TrailModel
@@ -159,7 +161,7 @@ class SearchBar extends Component {
 					showDetail={this.state.trailsDetailModel}
 					hideDetail={this.hideModel}
 				/>
-				<Container className="searched-trail">
+				<Container className='searched-trail'>
 					<Row>{trailCards}</Row>
 				</Container>
 			</div>
