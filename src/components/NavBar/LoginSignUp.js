@@ -104,7 +104,7 @@ class LoginSignUp extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 		const ths = this;
-		let trailsId = e.target.dataset.id;
+		//let trailsId = e.target.dataset.id;
 		let actualHostName = window.location.hostname;
 		let apiUrl = 'http://localhost:3000';
 
