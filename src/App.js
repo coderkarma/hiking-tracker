@@ -10,7 +10,7 @@ import axios from "axios";
 // import PageNotFound from './components/Profile/PageNotFound';
 
 function MyRouters(props) {
-    console.log("router", props);
+    // console.log("router", props);
     if (props.isLoggedIn) {
         return (
             <Switch>

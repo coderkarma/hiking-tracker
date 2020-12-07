@@ -6,33 +6,22 @@ import './SearchBar.css';
 
 // import env from '../../../env.json';
 class SearchBar extends Component {
-	// constructor(props) {
-	// 	super(props);
 	state = {
-		value                : '',
-		location             : '',
-		trailId              : '',
-		trailsDetailModel    : false,
-		selectedTrailsDetail : ''
+		value: '',
+		location: '',
+		trailId: '',
+		trailsDetailModel: false,
+		selectedTrailsDetail: '',
 	};
 
-	// console.log(env);
-	// let actualHostName = window.location.hostname;
-	// let apiUrl = env.dev.host;
-
-	// if (actualHostName !== 'localhost') {
-	// 	apiUrl = env.prod.host;
-	// }
-	// }
-
-	handleChange = event => {
+	handleChange = (event) => {
 		event.preventDefault();
 		this.setState({
-			value : event.target.value
+			value: event.target.value,
 		});
 	};
 
-	showModel = e => {
+	showModel = (e) => {
 		let trailsId = e.target.dataset.id;
 		let actualHostName = window.location.hostname;
 		let apiUrl = 'http://localhost:3000';
@@ -43,23 +32,23 @@ class SearchBar extends Component {
 
 		axios
 			.get(`${apiUrl}/trails/details/ ${trailsId}`)
-			.then(response => {
-				console.log(response.data.trails);
+			.then((response) => {
+				//console.log(response.data.trails);
 				this.setState({
-					trailsDetailModel    : true,
-					selectedTrailsDetail : response.data.trails[0]
+					trailsDetailModel: true,
+					selectedTrailsDetail: response.data.trails[0],
 				});
 			})
-			.catch(err => {
+			.catch((err) => {
 				console.log(err);
 			});
 	};
-	hideModel = e => {
+	hideModel = (e) => {
 		this.setState({
-			trailsDetailModel : false
+			trailsDetailModel: false,
 		});
 	};
-	getLocation = e => {
+	getLocation = (e) => {
 		let actualHostName = window.location.hostname;
 		let apiUrl = 'http://localhost:3000';
 
@@ -70,29 +59,29 @@ class SearchBar extends Component {
 		// remove white space and add plus for t
 		let address = this.state.value.replace(/\s/g, '+');
 		let url = `${apiUrl}/trails/geolocation/${address}`;
-		console.log(url);
+
 		let promise = fetch(url)
-			.then(response => response.json())
-			.catch(err => {
+			.then((response) => response.json())
+			.catch((err) => {
 				console.log('error occured', err);
 			});
 		return promise;
 	};
 
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault();
-		this.getLocation().then(location => {
-			console.log(location);
+		this.getLocation().then((location) => {
+			// console.log(location);
 			this.setState({
-				location : location.trails
+				location: location.trails,
 			});
 			// console.log('you are here:', this.state.location[0].imgMedium);
 		});
 	};
 
 	// !?   Add the trail on the user profile
-	addTrail = trail => {
-		console.log(this.props);
+	addTrail = (trail) => {
+		// console.log(this.props);
 		const token = localStorage.getItem('token');
 		if (!token) {
 			// Handle if the user is not logged in
@@ -110,9 +99,9 @@ class SearchBar extends Component {
 				`${apiUrl}/trails/add`,
 				{ trail },
 				{
-					headers : {
-						'x-token' : token
-					}
+					headers: {
+						'x-token': token,
+					},
 				}
 			)
 			.then(() => {
@@ -121,7 +110,7 @@ class SearchBar extends Component {
 	};
 
 	render() {
-		console.log(this.state.selectedTrailsDetail);
+		// console.log(this.state.selectedTrailsDetail);
 		let trailCards = this.state.location
 			? this.state.location.map((trail, idx) => {
 					return (
@@ -143,7 +132,7 @@ class SearchBar extends Component {
 							</Card>
 						</Col>
 					);
-				})
+			  })
 			: '';
 
 		return (
