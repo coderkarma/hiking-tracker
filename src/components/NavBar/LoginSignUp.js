@@ -5,7 +5,7 @@ import {
 	Dialog,
 	DialogActions,
 	DialogTitle,
-	DialogContent
+	DialogContent,
 } from '@material-ui/core';
 // import { Form } from 'react-bootstrap';
 
@@ -70,38 +70,38 @@ function SignUpForm(props) {
 
 class LoginSignUp extends Component {
 	state = {
-		type           : null,
-		open           : false,
-		displayname    : null,
-		loginpassword  : null,
-		signuppassword : null,
-		loginemail     : null,
-		signupemail    : null,
-		errorMessage   : false
+		type: null,
+		open: false,
+		displayname: null,
+		loginpassword: null,
+		signuppassword: null,
+		loginemail: null,
+		signupemail: null,
+		errorMessage: false,
 	};
 
-	showModel = type => {
+	showModel = (type) => {
 		this.setState({
-			type : type,
-			open : true
+			type: type,
+			open: true,
 		});
 	};
 	handleClose = () => {
 		this.setState({
-			type : null,
-			open : false
+			type: null,
+			open: false,
 		});
 	};
 
-	handleChange = e => {
+	handleChange = (e) => {
 		// console.log(e.target.value);
 		this.setState({
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
 		});
 	};
 
 	// check to see if the state type  is login or sigin up
-	handleSubmit = e => {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		const ths = this;
 		//let trailsId = e.target.dataset.id;
@@ -109,53 +109,53 @@ class LoginSignUp extends Component {
 		let apiUrl = 'http://localhost:3000';
 
 		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+			apiUrl = 'https://hikingtrailss.herokuapp.com';
 		}
 
 		if (ths.state.type === 'login') {
 			axios
 				.post(`${apiUrl}/users/login`, {
-					email    : ths.state.loginemail,
-					password : ths.state.loginpassword
+					email: ths.state.loginemail,
+					password: ths.state.loginpassword,
 				})
 				.then(
-					response => {
+					(response) => {
 						localStorage.setItem('token', response.data.signedJwt);
 						// console.log('response', response);
 						ths.props.handleLogin(response.data.user);
 					},
-					err => {
+					(err) => {
 						this.setState({
-							errorMessage : true
+							errorMessage: true,
 						});
 					}
 				)
-				.catch(err => console.log(err));
+				.catch((err) => console.log(err));
 		} else if (ths.state.type === 'signup') {
 			let actualHostName = window.location.hostname;
 			let apiUrl = 'http://localhost:3000';
 
 			if (actualHostName !== 'localhost') {
-				apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+				apiUrl = 'https://hikingtrailss.herokuapp.com';
 			}
 			axios
 				.post(`${apiUrl}/users/signup`, {
-					email       : this.state.signupemail,
-					password    : this.state.signuppassword,
-					displayname : this.state.displayname
+					email: this.state.signupemail,
+					password: this.state.signuppassword,
+					displayname: this.state.displayname,
 				})
 				.then(
-					response => {
+					(response) => {
 						localStorage.token = response.data.signedJwt;
 						ths.props.handleLogin(response.data.user);
 					},
-					err => {
+					(err) => {
 						this.setState({
-							errorMessage : true
+							errorMessage: true,
 						});
 					}
 				)
-				.catch(err => console.log(err));
+				.catch((err) => console.log(err));
 		}
 	};
 
@@ -176,17 +176,20 @@ class LoginSignUp extends Component {
 			);
 		return (
 			<div>
-				<Button onClick={e => this.showModel('login')} color='inherit'>
+				<Button
+					onClick={(e) => this.showModel('login')}
+					color='inherit'>
 					Login
 				</Button>
-				<Button onClick={e => this.showModel('signup')} color='inherit'>
+				<Button
+					onClick={(e) => this.showModel('signup')}
+					color='inherit'>
 					SignUp
 				</Button>
 				<Dialog
 					onClose={this.handleClose}
 					aria-labelledby='customized-dialog-title'
-					open={this.state.open}
-				>
+					open={this.state.open}>
 					<DialogTitle
 						id='customized-dialog-title'
 						onClose={this.handleClose}
