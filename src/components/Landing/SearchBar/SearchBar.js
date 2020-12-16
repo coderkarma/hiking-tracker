@@ -27,7 +27,7 @@ class SearchBar extends Component {
 		let apiUrl = 'http://localhost:3000';
 
 		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+			apiUrl = 'https://hikingtrailss.herokuapp.com';
 		}
 
 		axios
@@ -53,7 +53,7 @@ class SearchBar extends Component {
 		let apiUrl = 'http://localhost:3000';
 
 		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+			apiUrl = 'https://hikingtrailss.herokuapp.com';
 		}
 
 		// remove white space and add plus for t
@@ -91,7 +91,7 @@ class SearchBar extends Component {
 		let apiUrl = 'http://localhost:3000';
 
 		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
+			apiUrl = 'https://hikingtrailss.herokuapp.com';
 		}
 
 		axios
