@@ -7,21 +7,21 @@ import {
 	Row,
 	Form,
 	Col,
-	Jumbotron
+	Jumbotron,
 } from 'react-bootstrap';
 import './Profile.css';
 import { Animated } from 'react-animated-css';
 class Profile extends Component {
 	state = {
-		displayname : '',
-		email       : '',
-		trailId     : localStorage.getItem('userId'),
-		password    : '',
-		trails      : [],
-		datejoined  : ''
+		displayname: '',
+		email: '',
+		trailId: localStorage.getItem('userId'),
+		password: '',
+		trails: [],
+		datejoined: '',
 	};
 
-	deleteTrail = id => {
+	deleteTrail = (id) => {
 		const token = localStorage.getItem('token');
 		let actualHostName = window.location.hostname;
 		let apiUrl = 'http://localhost:3000';
@@ -31,24 +31,24 @@ class Profile extends Component {
 		}
 		axios
 			.delete(`${apiUrl}/trails/remove/${id}`, {
-				headers : {
-					'x-token' : token
-				}
+				headers: {
+					'x-token': token,
+				},
 			})
 			.then(() => {
 				this.props.refreshUser();
 			});
 	};
 
-	onHandleChange = e => {
+	onHandleChange = (e) => {
 		console.log(this.state);
 		this.setState({
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
 		});
 	};
 
 	// ! Making axios call for edit user's profile
-	editProfileHandle = e => {
+	editProfileHandle = (e) => {
 		e.preventDefault();
 		let id = this.props.user._id;
 
@@ -80,8 +80,7 @@ class Profile extends Component {
 					<Animated
 						animationIn='bounceInRight'
 						animationOut='fadeOut'
-						isVisible={true}
-					>
+						isVisible={true}>
 						<h1 className='profile animated'>
 							Welcome {user.displayname}
 						</h1>
@@ -117,7 +116,7 @@ class Profile extends Component {
 					</p>
 				</Jumbotron>
 				<div>
-					{user.trails.map(trail => {
+					{user.trails.map((trail) => {
 						if (!trail) {
 							return null;
 						}
@@ -142,8 +141,8 @@ class Profile extends Component {
 									<Button
 										variant='danger'
 										onClick={() =>
-											this.deleteTrail(trail.id)}
-									>
+											this.deleteTrail(trail.id)
+										}>
 										Remove
 									</Button>
 								</Card>
