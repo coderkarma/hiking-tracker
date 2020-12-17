@@ -23,14 +23,9 @@ class Profile extends Component {
 
 	deleteTrail = (id) => {
 		const token = localStorage.getItem('token');
-		let actualHostName = window.location.hostname;
-		let apiUrl = 'http://localhost:3000';
 
-		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
-		}
 		axios
-			.delete(`${apiUrl}/trails/remove/${id}`, {
+			.delete(`/trails/remove/${id}`, {
 				headers: {
 					'x-token': token,
 				},
@@ -60,14 +55,8 @@ class Profile extends Component {
 			updateData['email'] = this.state.email;
 		}
 		console.log(updateData);
-		let actualHostName = window.location.hostname;
-		let apiUrl = 'http://localhost:3000';
 
-		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://agile-fjord-52758.herokuapp.com';
-		}
-
-		axios.put(`${apiUrl}/users/${id}`, updateData).then(() => {
+		axios.put(`/users/${id}`, updateData).then(() => {
 			this.props.refreshUser();
 		});
 	};
