@@ -66,6 +66,8 @@ class App extends Component {
 		this.refreshUser();
 	}
 
+    // test 
+    
 	handleLogin = (user) => {
 		this.setState(
 			{
