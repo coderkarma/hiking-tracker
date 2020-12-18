@@ -25,7 +25,7 @@ class Profile extends Component {
 		const token = localStorage.getItem('token');
 
 		axios
-			.delete(`/trails/remove/${id}`, {
+			.delete(`http://localhost:3000/trails/remove/${id}`, {
 				headers: {
 					'x-token': token,
 				},
@@ -56,7 +56,7 @@ class Profile extends Component {
 		}
 		console.log(updateData);
 
-		axios.put(`/users/${id}`, updateData).then(() => {
+		axios.put(`http://localhost:3000/users/${id}`, updateData).then(() => {
 			this.props.refreshUser();
 		});
 	};

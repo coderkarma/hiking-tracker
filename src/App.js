@@ -66,8 +66,8 @@ class App extends Component {
 		this.refreshUser();
 	}
 
-    // test 
-    
+	// test
+
 	handleLogin = (user) => {
 		this.setState(
 			{
@@ -91,7 +91,7 @@ class App extends Component {
 		}
 
 		axios
-			.get(`/users/profile`, {
+			.get(`http://localhost:3000/users/profile`, {
 				headers: {
 					'x-token': token,
 				},
