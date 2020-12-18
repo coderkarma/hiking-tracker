@@ -192,8 +192,9 @@ class LoginSignUp extends Component {
 					open={this.state.open}>
 					<DialogTitle
 						id='customized-dialog-title'
-						onClose={this.handleClose}
-					/>
+						onClose={this.handleClose}>
+						Close
+					</DialogTitle>
 					<DialogContent>{FormsFront}</DialogContent>
 					<DialogActions>
 						<button onClick={this.handleClose} color='primary'>
