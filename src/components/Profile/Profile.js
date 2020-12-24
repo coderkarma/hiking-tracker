@@ -11,6 +11,8 @@ import {
 } from 'react-bootstrap';
 import './Profile.css';
 import { Animated } from 'react-animated-css';
+import { baseUrl } from '../../config/variables';
+
 class Profile extends Component {
 	state = {
 		displayname: '',
@@ -25,7 +27,7 @@ class Profile extends Component {
 		const token = localStorage.getItem('token');
 
 		axios
-			.delete(`http://localhost:3000/trails/remove/${id}`, {
+			.delete(`${baseUrl}/trails/remove/${id}`, {
 				headers: {
 					'x-token': token,
 				},
@@ -56,7 +58,7 @@ class Profile extends Component {
 		}
 		console.log(updateData);
 
-		axios.put(`http://localhost:3000/users/${id}`, updateData).then(() => {
+		axios.put(`${baseUrl}/users/${id}`, updateData).then(() => {
 			this.props.refreshUser();
 		});
 	};

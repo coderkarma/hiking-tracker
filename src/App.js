@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavBar from './components/NavBar/NavBar';
+import { baseUrl } from './config/variables';
 
 import './App.css';
 // import MyRoutes from './config/routes';
@@ -66,7 +67,6 @@ class App extends Component {
 		this.refreshUser();
 	}
 
-
 	handleLogin = (user) => {
 		this.setState(
 			{
@@ -90,7 +90,7 @@ class App extends Component {
 		}
 
 		axios
-			.get(`http://localhost:3000/users/profile`, {
+			.get(`${baseUrl}/users/profile`, {
 				headers: {
 					'x-token': token,
 				},

@@ -10,3 +10,4 @@ export default (
         <Route path="/profile" component={Profile} />
     </Switch>
 );
+

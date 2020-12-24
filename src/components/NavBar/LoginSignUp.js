@@ -7,7 +7,7 @@ import {
 	DialogTitle,
 	DialogContent,
 } from '@material-ui/core';
-// import { Form } from 'react-bootstrap';
+import { baseUrl } from '../../config/variables';
 
 function LoginForm(props) {
 	// console.log( "error message is here", props.errorMessage)
@@ -94,34 +94,24 @@ class LoginSignUp extends Component {
 	};
 
 	handleChange = (e) => {
-		// console.log(e.target.value);
 		this.setState({
 			[e.target.name]: e.target.value,
 		});
 	};
 
-	// check to see if the state type  is login or sigin up
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const ths = this;
-		//let trailsId = e.target.dataset.id;
-		let actualHostName = window.location.hostname;
-		let apiUrl = 'http://localhost:3000';
-
-		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://hikingtrailss.herokuapp.com';
-		}
 
 		if (ths.state.type === 'login') {
 			axios
-				.post(`${apiUrl}/users/login`, {
+				.post(`${baseUrl}/users/login`, {
 					email: ths.state.loginemail,
 					password: ths.state.loginpassword,
 				})
 				.then(
 					(response) => {
 						localStorage.setItem('token', response.data.signedJwt);
-						// console.log('response', response);
 						ths.props.handleLogin(response.data.user);
 					},
 					(err) => {
@@ -132,14 +122,8 @@ class LoginSignUp extends Component {
 				)
 				.catch((err) => console.log(err));
 		} else if (ths.state.type === 'signup') {
-			let actualHostName = window.location.hostname;
-			let apiUrl = 'http://localhost:3000';
-
-			if (actualHostName !== 'localhost') {
-				apiUrl = 'https://hikingtrailss.herokuapp.com';
-			}
 			axios
-				.post(`${apiUrl}/users/signup`, {
+				.post(`${baseUrl}/users/signup`, {
 					email: this.state.signupemail,
 					password: this.state.signuppassword,
 					displayname: this.state.displayname,

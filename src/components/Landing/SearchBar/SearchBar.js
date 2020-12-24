@@ -3,6 +3,7 @@ import { Row, Card, Col, Container, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import TrailModel from '../TrailModel';
 import './SearchBar.css';
+import { baseUrl } from '../../../config/variables';
 
 // import env from '../../../env.json';
 class SearchBar extends Component {
@@ -23,15 +24,9 @@ class SearchBar extends Component {
 
 	showModel = (e) => {
 		let trailsId = e.target.dataset.id;
-		let actualHostName = window.location.hostname;
-		let apiUrl = 'http://localhost:3000';
-
-		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://hikingtrailss.herokuapp.com';
-		}
 
 		axios
-			.get(`${apiUrl}/trails/details/ ${trailsId}`)
+			.get(`${baseUrl}/trails/details/ ${trailsId}`)
 			.then((response) => {
 				//console.log(response.data.trails);
 				this.setState({
@@ -49,16 +44,8 @@ class SearchBar extends Component {
 		});
 	};
 	getLocation = (e) => {
-		let actualHostName = window.location.hostname;
-		let apiUrl = 'http://localhost:3000';
-
-		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://hikingtrailss.herokuapp.com';
-		}
-
-		// remove white space and add plus for t
 		let address = this.state.value.replace(/\s/g, '+');
-		let url = `${apiUrl}/trails/geolocation/${address}`;
+		let url = `${baseUrl}/trails/geolocation/${address}`;
 
 		let promise = fetch(url)
 			.then((response) => response.json())
@@ -71,32 +58,22 @@ class SearchBar extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		this.getLocation().then((location) => {
-			// console.log(location);
 			this.setState({
 				location: location.trails,
 			});
-			// console.log('you are here:', this.state.location[0].imgMedium);
 		});
 	};
 
 	// !?   Add the trail on the user profile
 	addTrail = (trail) => {
-		// console.log(this.props);
 		const token = localStorage.getItem('token');
 		if (!token) {
-			// Handle if the user is not logged in
 			return;
-		}
-		let actualHostName = window.location.hostname;
-		let apiUrl = 'http://localhost:3000';
-
-		if (actualHostName !== 'localhost') {
-			apiUrl = 'https://hikingtrailss.herokuapp.com';
 		}
 
 		axios
 			.post(
-				`${apiUrl}/trails/add`,
+				`${baseUrl}/trails/add`,
 				{ trail },
 				{
 					headers: {
@@ -110,7 +87,6 @@ class SearchBar extends Component {
 	};
 
 	render() {
-		// console.log(this.state.selectedTrailsDetail);
 		let trailCards = this.state.location
 			? this.state.location.map((trail, idx) => {
 					return (
