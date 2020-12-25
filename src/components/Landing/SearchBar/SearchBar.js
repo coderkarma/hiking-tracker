@@ -60,6 +60,7 @@ class SearchBar extends Component {
 		this.getLocation().then((location) => {
 			this.setState({
 				location: location.trails,
+				value: '',
 			});
 		});
 	};
