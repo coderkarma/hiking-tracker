@@ -92,7 +92,7 @@ class SearchBar extends Component {
 			? this.state.location.map((trail, idx) => {
 					return (
 						<Col xs={12} md={4} lg={4} key={idx}>
-							<Card className='api-cards animated slideInUp'>
+							<Card className='api-cards animated slideInUp shadow'>
 								<Card.Img
 									variant='top'
 									data-id={trail.id}
@@ -102,10 +102,16 @@ class SearchBar extends Component {
 								/>
 								<Card.Body>
 									<Card.Title>{trail.name}</Card.Title>
+									<span>
+										<Button
+											className='rounded-circle'
+											onClick={() =>
+												this.addTrail(trail)
+											}>
+											Save
+										</Button>
+									</span>
 								</Card.Body>
-								<Button onClick={() => this.addTrail(trail)}>
-									Save
-								</Button>
 							</Card>
 						</Col>
 					);
@@ -114,7 +120,7 @@ class SearchBar extends Component {
 
 		return (
 			<div>
-				<Form className='py-3' onSubmit={this.handleSubmit}>
+				<Form className='py-3 rounded' onSubmit={this.handleSubmit}>
 					<input
 						type='text'
 						value={this.state.value}

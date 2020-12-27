@@ -1,18 +1,29 @@
 .api-cards {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-    top: 0;
-    text-align: center;
-    transition: all 0.25s;
-    margin-bottom: 2em;
+	width: 100%;
+	height: auto;
+	border-radius: 8px;
+	top: 0;
+	text-align: center;
+	transition: all 0.25s;
+	margin-bottom: 2em;
 }
 
+.api-cards > img:hover {
+	opacity: 0.5;
+}
 .searched-trail {
-    width: 100%;
+	width: 100%;
 }
 
 .card-image {
-    height: 400px;
+	height: 300px;
+	width: 100%;
+}
+
+.rounded > input {
+	height: 37px;
+	width: 300px;
+	border-radius: 20px;
+	outline: none;
+	text-align: center;
 }
