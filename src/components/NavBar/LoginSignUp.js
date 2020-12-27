@@ -6,33 +6,37 @@ import {
 	DialogActions,
 	DialogTitle,
 	DialogContent,
+	Input,
 } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import { baseUrl } from '../../config/variables';
+import './LoginSignUp.css';
 
-function LoginForm(props) {
-	// console.log( "error message is here", props.errorMessage)
+function LoginForm({ handleChange, handleSubmit, errorMessage }) {
 	return (
 		<div>
-			<form>
-				<input
+			<form className='login-form'>
+				<TextField
 					type='email'
 					name='loginemail'
-					placeholder='email'
-					onChange={props.handleChange}
+					label='Email'
+					variant='outlined'
+					onChange={handleChange}
 				/>
-				<input
+				<TextField
 					type='password'
 					name='loginpassword'
-					placeholder='password'
-					onChange={props.handleChange}
+					// placeholder='password'
+					required
+					label='Password'
+					variant='outlined'
+					onChange={handleChange}
 				/>
 
-				<Button onClick={props.handleSubmit}>Login </Button>
+				<Button onClick={handleSubmit}>Login </Button>
 				{/* <Redirect to="/profile" /> */}
 			</form>
-			{props.errorMessage === false ? null : (
-				<p>incorrect password/email</p>
-			)}
+			{errorMessage === false ? null : <p>incorrect password or email</p>}
 		</div>
 	);
 }
@@ -40,7 +44,7 @@ function SignUpForm(props) {
 	return (
 		<div>
 			<form>
-				<input
+				<Input
 					type='text'
 					name='displayname'
 					placeholder='Display Name'
@@ -61,7 +65,7 @@ function SignUpForm(props) {
 
 				<Button onClick={props.handleSubmit}>Submit</Button>
 				{props.errorMessage === false ? null : (
-					<p>User already exists!</p>
+					<p className='text-center'>User already exists!</p>
 				)}
 			</form>
 		</div>
@@ -176,14 +180,12 @@ class LoginSignUp extends Component {
 					open={this.state.open}>
 					<DialogTitle
 						id='customized-dialog-title'
-						onClose={this.handleClose}>
-						Close
-					</DialogTitle>
+						onClose={this.handleClose}></DialogTitle>
 					<DialogContent>{FormsFront}</DialogContent>
 					<DialogActions>
-						<button onClick={this.handleClose} color='primary'>
+						<Button onClick={this.handleClose} color='primary'>
 							Close
-						</button>
+						</Button>
 					</DialogActions>
 				</Dialog>
 			</div>
