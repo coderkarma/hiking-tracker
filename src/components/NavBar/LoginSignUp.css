@@ -2,4 +2,18 @@
 	padding: 2rem;
 	height: auto;
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.signup-form-contaner {
+	padding: 2rem;
+	height: auto;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+}
+.signup-form {
+	display: flex;
+	flex-direction: column;
 }

@@ -4,8 +4,8 @@ import axios from 'axios';
 import TrailModel from '../TrailModel';
 import './SearchBar.css';
 import { baseUrl } from '../../../config/variables';
+import SearchIcon from '@material-ui/icons/Search';
 
-// import env from '../../../env.json';
 class SearchBar extends Component {
 	state = {
 		value: '',
@@ -127,6 +127,7 @@ class SearchBar extends Component {
 						onChange={this.handleChange}
 						placeholder='Search Trails by City'
 					/>
+					<SearchIcon fontSize='large' />
 				</Form>
 				<TrailModel
 					trailDetails={this.state.selectedTrailsDetail}

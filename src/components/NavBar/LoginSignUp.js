@@ -6,7 +6,6 @@ import {
 	DialogActions,
 	DialogTitle,
 	DialogContent,
-	Input,
 } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import { baseUrl } from '../../config/variables';
@@ -26,8 +25,6 @@ function LoginForm({ handleChange, handleSubmit, errorMessage }) {
 				<TextField
 					type='password'
 					name='loginpassword'
-					// placeholder='password'
-					required
 					label='Password'
 					variant='outlined'
 					onChange={handleChange}
@@ -42,25 +39,34 @@ function LoginForm({ handleChange, handleSubmit, errorMessage }) {
 }
 function SignUpForm(props) {
 	return (
-		<div>
-			<form>
-				<Input
+		<div className='signup-form-container'>
+			<form className='signup-form'>
+				<TextField
 					type='text'
 					name='displayname'
 					placeholder='Display Name'
+					variant='outlined'
+					label='Displayname'
 					onChange={props.handleChange}
+					margin='normal'
 				/>
-				<input
+				<TextField
 					type='email'
 					name='signupemail'
+					variant='outlined'
+					label='Email'
 					placeholder='email'
 					onChange={props.handleChange}
+					margin='normal'
 				/>
-				<input
+				<TextField
 					type='password'
 					name='signuppassword'
+					variant='outlined'
+					label='Password'
 					placeholder='password'
 					onChange={props.handleChange}
+					margin='normal'
 				/>
 
 				<Button onClick={props.handleSubmit}>Submit</Button>
@@ -106,8 +112,9 @@ class LoginSignUp extends Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		const ths = this;
+		const { signupemail, signuppassword, displayname, type } = this.state;
 
-		if (ths.state.type === 'login') {
+		if (type === 'login') {
 			axios
 				.post(`${baseUrl}/users/login`, {
 					email: ths.state.loginemail,
@@ -125,12 +132,12 @@ class LoginSignUp extends Component {
 					}
 				)
 				.catch((err) => console.log(err));
-		} else if (ths.state.type === 'signup') {
+		} else if (type === 'signup') {
 			axios
 				.post(`${baseUrl}/users/signup`, {
-					email: this.state.signupemail,
-					password: this.state.signuppassword,
-					displayname: this.state.displayname,
+					email: signupemail,
+					password: signuppassword,
+					displayname: displayname,
 				})
 				.then(
 					(response) => {
@@ -148,8 +155,9 @@ class LoginSignUp extends Component {
 	};
 
 	render() {
+		const { type } = this.state;
 		const FormsFront =
-			this.state.type === 'login' ? (
+			type === 'login' ? (
 				<LoginForm
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
@@ -176,11 +184,9 @@ class LoginSignUp extends Component {
 				</Button>
 				<Dialog
 					onClose={this.handleClose}
-					aria-labelledby='customized-dialog-title'
+					aria-labelledby='login'
 					open={this.state.open}>
-					<DialogTitle
-						id='customized-dialog-title'
-						onClose={this.handleClose}></DialogTitle>
+					<DialogTitle id='login' onClose={this.handleClose} />
 					<DialogContent>{FormsFront}</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleClose} color='primary'>
