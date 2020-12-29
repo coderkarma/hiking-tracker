@@ -107,13 +107,13 @@ class Profile extends Component {
 					</p>
 				</Jumbotron>
 				<div>
-					{user.trails.map((trail) => {
+					{user.trails.map((trail, idx) => {
 						if (!trail) {
 							return null;
 						}
 
 						let savedTrailsCard = (
-							<Col xs={6} md={4} lg={4}>
+							<Col xs={6} md={4} lg={4} key={idx}>
 								<Card className='profile-card'>
 									<Card.Img
 										src={trail.imgMedium}

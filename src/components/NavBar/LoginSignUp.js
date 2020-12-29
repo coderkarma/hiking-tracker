@@ -11,7 +11,13 @@ import TextField from '@material-ui/core/TextField';
 import { baseUrl } from '../../config/variables';
 import './LoginSignUp.css';
 
-function LoginForm({ handleChange, handleSubmit, errorMessage }) {
+function LoginForm({
+	handleChange,
+	handleSubmit,
+	errorMessage,
+	loginemail,
+	loginpassword,
+}) {
 	return (
 		<div>
 			<form className='login-form'>
@@ -30,10 +36,16 @@ function LoginForm({ handleChange, handleSubmit, errorMessage }) {
 					onChange={handleChange}
 				/>
 
-				<Button onClick={handleSubmit}>Login </Button>
+				<Button
+					disabled={!loginemail && !loginpassword}
+					onClick={handleSubmit}>
+					Login
+				</Button>
 				{/* <Redirect to="/profile" /> */}
 			</form>
-			{errorMessage === false ? null : <p>incorrect password or email</p>}
+			{errorMessage === false ? null : (
+				<p className='text'>Incorrect password or email</p>
+			)}
 		</div>
 	);
 }
@@ -155,19 +167,22 @@ class LoginSignUp extends Component {
 	};
 
 	render() {
-		const { type } = this.state;
+		const { type, errorMessage, loginemail, loginpassword } = this.state;
+
 		const FormsFront =
 			type === 'login' ? (
 				<LoginForm
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
-					errorMessage={this.state.errorMessage}
+					errorMessage={errorMessage}
+					loginpassword={loginpassword}
+					loginemail={loginemail}
 				/>
 			) : (
 				<SignUpForm
 					handleChange={this.handleChange}
 					handleSubmit={this.handleSubmit}
-					errorMessage={this.state.errorMessage}
+					errorMessage={errorMessage}
 				/>
 			);
 		return (
